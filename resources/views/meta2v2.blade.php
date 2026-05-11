@@ -291,7 +291,7 @@
             
             <div class="biz-row">
                 <div class="biz-avatar">
-                    <img src="https://ui-avatars.com/api/?name=Style+Studio&background=fff&color=0064e0&font-size=0.5&bold=true" alt="Style Studio">
+                    <img src="/logo.jpg" alt="Style Studio">
                 </div>
                 <div class="biz-info">
                     <p class="biz-name">Style Studio</p>
@@ -314,11 +314,11 @@
             <div class="card-footer">
                 <button type="button" class="btn btn-gray" id="btn_before">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-                    Before
+                    Previous
                 </button>
                 <div class="step-num">2/3</div>
                 <button type="button" class="btn btn-blue" id="btn_next">
-                    Next
+                    Accept invitation
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
             </div>
