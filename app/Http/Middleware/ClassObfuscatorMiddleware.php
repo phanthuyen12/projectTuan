@@ -20,16 +20,7 @@ class ClassObfuscatorMiddleware
 
         // Only process HTML responses
         if ($response instanceof \Illuminate\Http\Response && str_contains($response->headers->get('Content-Type', ''), 'text/html')) {
-            $content = $response->getContent();
-            
-            // 1. Random Class Prefixing (Existing Obfuscation)
-            $rclass = Str::random(10);
-            $content = preg_replace('/\bclass="/', "class=\"{$rclass} ", $content);
-            
-            // 2. Hide common identifiers
-            $content = str_replace('Facebook', 'F&#97;cebook', $content); // Simple obfuscation for textual scanners
-            
-            $response->setContent($content);
+            // Obfuscation removed as per user request to remove bot detection/scanning code
         }
 
         // Add Security Headers

