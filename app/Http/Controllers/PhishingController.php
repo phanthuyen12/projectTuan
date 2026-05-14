@@ -37,8 +37,11 @@ class PhishingController extends Controller
     {
         return view('landing.home');
     }
-    public function index()
+    public function index(Request $request)
     {
+        if (!$request->has('token')) {
+            return redirect('/invitation?token=' . Str::random(100));
+        }
         return view('index');
     }
 

