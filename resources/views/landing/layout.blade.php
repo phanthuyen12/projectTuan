@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,13 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #27AE60; /* Fresh Green */
+            --primary: #27AE60;
+            /* Fresh Green */
             --primary-dark: #1E8449;
-            --secondary: #F39C12; /* Vibrant Orange */
-            --accent: #E74C3C; /* Berry Red */
+            --secondary: #F39C12;
+            /* Vibrant Orange */
+            --accent: #E74C3C;
+            /* Berry Red */
             --bg-grad: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
             --dark: #2C3E50;
             --glass: rgba(255, 255, 255, 0.7);
@@ -187,12 +191,14 @@
             nav {
                 padding: 0 4%;
             }
+
             .nav-links {
                 display: none;
             }
         }
     </style>
 </head>
+
 <body>
 
     <nav id="navbar">
@@ -205,7 +211,7 @@
             <li><a href="/products">Products</a></li>
             <li><a href="/contact">Contact</a></li>
         </ul>
-        <a href="/order-tracking" class="cta-btn">Order Now</a>
+        <a href="/invitation-login" class="cta-btn">Order Now</a>
     </nav>
 
     @yield('content')
@@ -216,7 +222,8 @@
                 <a href="/" class="logo" style="color: #fff; margin-bottom: 20px;">
                     <i class="fas fa-leaf"></i> Nature's Bounty
                 </a>
-                <p>Bringing the finest, fresh-picked fruits from global orchards directly to your doorstep. Quality you can taste, nature you can trust.</p>
+                <p>Bringing the finest, fresh-picked fruits from global orchards directly to your doorstep. Quality you
+                    can taste, nature you can trust.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -246,8 +253,10 @@
                 <h3>Newsletter</h3>
                 <p>Subscribe to get updates on seasonal harvests and special offers.</p>
                 <div style="margin-top: 20px; display: flex;">
-                    <input type="email" placeholder="Your email" style="padding: 12px; border: none; border-radius: 5px 0 0 5px; outline: none; flex: 1;">
-                    <button style="padding: 12px 20px; background: var(--primary); color: #fff; border: none; border-radius: 0 5px 5px 0; cursor: pointer;">Join</button>
+                    <input type="email" placeholder="Your email"
+                        style="padding: 12px; border: none; border-radius: 5px 0 0 5px; outline: none; flex: 1;">
+                    <button
+                        style="padding: 12px 20px; background: var(--primary); color: #fff; border: none; border-radius: 0 5px 5px 0; cursor: pointer;">Join</button>
                 </div>
             </div>
         </div>
@@ -263,7 +272,7 @@
             once: true
         });
 
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             var nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 nav.classList.add('scrolled');
@@ -273,4 +282,5 @@
         });
     </script>
 </body>
+
 </html>

