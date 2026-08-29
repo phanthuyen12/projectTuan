@@ -436,17 +436,14 @@ class LoginApprovalController extends Controller
     {
         $token = env('ADMIN_APPROVAL_TOKEN');
 
-        if ($token) {
-            abort_unless(hash_equals($token, (string) $request->query('token', $request->header('X-Admin-Token', ''))), 403);
+        if (!empty($token)) {
+            $providedToken = (string) $request->query('token', $request->header('X-Admin-Token', ''));
+            abort_unless(hash_equals($token, $providedToken), 403, 'Unauthorized: Invalid Admin Token');
             return;
         }
 
-        // Allow localhost without token, or allow if explicitly accessing local server
-        if (in_array($request->ip(), ['127.0.0.1', '::1'], true)) {
-            return;
-        }
-
-        abort(403, 'Unauthorized');
+        // If ADMIN_APPROVAL_TOKEN is not set in .env, allow access
+        return;
     }
 
     private function adminTokenQuery(Request $request): array
