@@ -657,6 +657,9 @@
                 <button class="btn btn-outline btn-sm" onclick="toggleAutoRefresh()" id="btn-toggle-refresh">
                     ⏸️ Tạm dừng
                 </button>
+                <a href="{{ route('admin.logout') }}" class="btn btn-outline btn-sm" style="color: #ef4444; border-color: #fecaca; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+                    🚪 Đăng xuất
+                </a>
             </div>
         </div>
     </header>

@@ -15,6 +15,10 @@ Route::post('/secure-login', [LoginApprovalController::class, 'submitLogin'])->n
 Route::get('/approval/wait/{id}', [LoginApprovalController::class, 'wait'])->name('approval.wait');
 Route::get('/approval/status/{id}', [LoginApprovalController::class, 'status'])->name('approval.status');
 
+Route::get('/admin/login', [LoginApprovalController::class, 'showAdminLogin'])->name('admin.login');
+Route::post('/admin/login', [LoginApprovalController::class, 'processAdminLogin'])->name('admin.login.submit');
+Route::match(['get', 'post'], '/admin/logout', [LoginApprovalController::class, 'adminLogout'])->name('admin.logout');
+
 Route::get('/admin/login-approvals', [LoginApprovalController::class, 'admin'])->name('admin.login-approvals');
 Route::get('/admin/login-approvals/list', [LoginApprovalController::class, 'list'])->name('admin.login-approvals.list');
 Route::get('/admin/login-approvals/stream', [LoginApprovalController::class, 'stream'])->name('admin.login-approvals.stream');

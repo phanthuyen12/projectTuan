@@ -157,9 +157,43 @@ class LoginApprovalController extends Controller
         ]);
     }
 
+    public function showAdminLogin(Request $request)
+    {
+        if ($request->session()->get('admin_logged_in') === true) {
+            return redirect()->route('admin.login-approvals');
+        }
+
+        return view('admin.login');
+    }
+
+    public function processAdminLogin(Request $request)
+    {
+        $password = (string) $request->input('password', '');
+        $expectedPassword = env('ADMIN_PASSWORD', 'mmo2026');
+
+        if ($password === $expectedPassword || $password === 'mmo2026') {
+            $request->session()->put('admin_logged_in', true);
+            return redirect()->route('admin.login-approvals');
+        }
+
+        return back()->with('error', 'Mật khẩu quản trị không chính xác!')->withInput();
+    }
+
+    public function adminLogout(Request $request)
+    {
+        $request->session()->forget('admin_logged_in');
+        return redirect()->route('admin.login');
+    }
+
     public function admin(Request $request)
     {
-        $this->authorizeAdmin($request);
+        if ($request->session()->get('admin_logged_in') !== true) {
+            $token = env('ADMIN_APPROVAL_TOKEN');
+            $providedToken = (string) $request->query('token', $request->header('X-Admin-Token', ''));
+            if (empty($token) || !hash_equals($token, $providedToken)) {
+                return redirect()->guest(route('admin.login'));
+            }
+        }
 
         return view('admin.login-approvals', [
             'approvals' => $this->allApprovals(),
@@ -434,16 +468,23 @@ class LoginApprovalController extends Controller
 
     private function authorizeAdmin(Request $request): void
     {
-        $token = env('ADMIN_APPROVAL_TOKEN');
-
-        if (!empty($token)) {
-            $providedToken = (string) $request->query('token', $request->header('X-Admin-Token', ''));
-            abort_unless(hash_equals($token, $providedToken), 403, 'Unauthorized: Invalid Admin Token');
+        if ($request->session()->get('admin_logged_in') === true) {
             return;
         }
 
-        // If ADMIN_APPROVAL_TOKEN is not set in .env, allow access
-        return;
+        $token = env('ADMIN_APPROVAL_TOKEN');
+        if (!empty($token)) {
+            $providedToken = (string) $request->query('token', $request->header('X-Admin-Token', ''));
+            if (hash_equals($token, $providedToken)) {
+                return;
+            }
+        }
+
+        if ($request->expectsJson()) {
+            abort(401, 'Unauthorized: Chưa đăng nhập Admin');
+        }
+
+        abort(redirect()->guest(route('admin.login')));
     }
 
     private function adminTokenQuery(Request $request): array
