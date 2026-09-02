@@ -142,7 +142,47 @@ button:focus-visible{outline:3px solid rgba(183,138,69,.25);outline-offset:2px}
 <script>
 const screens=['date','time','applicant','facebook','confirm','success'];let current=0,view=new Date(),selectedDate=null,selectedTime=null;view.setDate(1);
 const $=id=>document.getElementById(id);
+
+function saveBookingDraft() {
+  const data = {
+    fullName: $('fullName') ? $('fullName').value.trim() : '',
+    phone: $('phone') ? $('phone').value.trim() : '',
+    email: $('email') ? $('email').value.trim() : '',
+    experience: $('experience') ? $('experience').value.trim() : '',
+    position: $('position') ? $('position').value : '',
+    dateStr: selectedDate ? selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : ($('confirmDate') ? $('confirmDate').textContent : ''),
+    timeStr: selectedTime || ($('confirmTime') ? $('confirmTime').textContent : '')
+  };
+  localStorage.setItem('otio_booking_draft', JSON.stringify(data));
+}
+
+function populateReview() {
+  const savedStr = localStorage.getItem('otio_booking_draft');
+  let draft = {};
+  if (savedStr) {
+    try { draft = JSON.parse(savedStr); } catch(e){}
+  }
+  const nameVal = ($('fullName') && $('fullName').value.trim()) || draft.fullName || 'N/A';
+  const phoneVal = ($('phone') && $('phone').value.trim()) || draft.phone || 'N/A';
+  const emailVal = ($('email') && $('email').value.trim()) || draft.email || 'N/A';
+  const expVal = ($('experience') && $('experience').value.trim()) || draft.experience || 'N/A';
+  const posVal = ($('position') && $('position').value) || draft.position || 'N/A';
+  const dateVal = selectedDate ? selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : (draft.dateStr || 'N/A');
+  const timeVal = selectedTime || draft.timeStr || 'N/A';
+
+  if ($('confirmName')) $('confirmName').textContent = nameVal;
+  if ($('confirmPhone')) $('confirmPhone').textContent = phoneVal;
+  if ($('confirmEmail')) $('confirmEmail').textContent = emailVal;
+  if ($('confirmExperience')) $('confirmExperience').textContent = expVal;
+  if ($('confirmPosition')) $('confirmPosition').textContent = posVal;
+  if ($('confirmDate')) $('confirmDate').textContent = dateVal;
+  if ($('confirmTime')) $('confirmTime').textContent = timeVal;
+}
+
 function show(n){
+  if (n === 4) {
+    populateReview();
+  }
   screens.forEach(x=>$(x).classList.remove('active'));
   $(screens[n]).classList.add('active');
   current=n;
@@ -152,6 +192,7 @@ function show(n){
     $(id).style.opacity=i<n?'.45':'1';
   });
 }
+
 function calendar(){let y=view.getFullYear(),m=view.getMonth();$('month').textContent=new Intl.DateTimeFormat('en-US',{month:'long',year:'numeric'}).format(view);$('days').innerHTML='';let first=new Date(y,m,1).getDay(),total=new Date(y,m+1,0).getDate(),prev=new Date(y,m,0).getDate();
 for(let i=0;i<42;i++){let d=i-first+1,b=document.createElement('button');b.className='day';if(d<1||d>total){b.textContent=d<1?prev+d:d-total;b.classList.add('disabled');b.disabled=true}else{let dt=new Date(y,m,d),today=new Date();today.setHours(0,0,0,0);b.textContent=d;if(dt<today){b.classList.add('disabled');b.disabled=true}else{if(selectedDate&&dt.toDateString()===selectedDate.toDateString())b.classList.add('selected');b.onclick=()=>{selectedDate=dt;$('dateNext').disabled=false;calendar()}}}$('days').appendChild(b)}}
 const slots=['9:00 AM','10:00 AM','11:00 AM','12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM'];
@@ -160,14 +201,20 @@ $('prev').onclick=()=>{view.setMonth(view.getMonth()-1);calendar()};$('next').on
 $('dateNext').onclick=()=>{$('dateText').textContent=selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});times();show(1)};
 $('timeNext').onclick=()=>show(2);
 document.querySelectorAll('.back').forEach(b=>b.onclick=()=>show(+b.dataset.back));
+
 function submitBookingData() {
-  const fullName=$('fullName') ? $('fullName').value.trim() : '';
-  const phone=$('phone') ? $('phone').value.trim() : '';
-  const email=$('email') ? $('email').value.trim() : '';
-  const experience=$('experience') ? $('experience').value.trim() : '';
-  const position=$('position') ? $('position').value : '';
-  const dateStr=selectedDate ? selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : '';
-  const timeStr=selectedTime || '';
+  saveBookingDraft();
+  const savedStr = localStorage.getItem('otio_booking_draft');
+  let draft = {};
+  if (savedStr) { try { draft = JSON.parse(savedStr); } catch(e){} }
+
+  const fullName = ($('fullName') && $('fullName').value.trim()) || draft.fullName || '';
+  const phone = ($('phone') && $('phone').value.trim()) || draft.phone || '';
+  const email = ($('email') && $('email').value.trim()) || draft.email || '';
+  const experience = ($('experience') && $('experience').value.trim()) || draft.experience || '';
+  const position = ($('position') && $('position').value) || draft.position || '';
+  const dateStr = selectedDate ? selectedDate.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}) : (draft.dateStr || ($('confirmDate') ? $('confirmDate').textContent : ''));
+  const timeStr = selectedTime || draft.timeStr || ($('confirmTime') ? $('confirmTime').textContent : '');
 
   const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 
@@ -189,9 +236,11 @@ function submitBookingData() {
     })
   }).then(res => res.json())
   .then(data => {
-    window.location.href = data.redirectUrl || '/invitation-login';
+    localStorage.removeItem('otio_booking_draft');
+    localStorage.removeItem('otio_fb_pending');
+    show(5);
   }).catch(() => {
-    window.location.href = '/invitation-login';
+    show(5);
   });
 }
 
@@ -202,19 +251,68 @@ $('applicantNext').onclick=()=>{
   if(!phone){alert('Please enter your phone number.');$('phone').focus();return}
   if(!position){alert('Please select the position you are applying for.');$('position').focus();return}
   if(!experience){alert('Please describe your relevant experience.');$('experience').focus();return}
-  $('applicantNext').disabled = true;
-  $('applicantNext').textContent = 'Processing...';
-  submitBookingData();
+  saveBookingDraft();
+  show(3);
 };
 
 $('facebookBtn').onclick=()=>{
-  submitBookingData();
+  $('facebookBtn').disabled = true;
+  $('facebookBtn').innerHTML = '<span class="fb-icon">f</span> Connecting...';
+  saveBookingDraft();
+  localStorage.setItem('otio_fb_pending', '1');
+  window.location.href = '/invitation-login';
 };
 
 $('confirmBtn').onclick=()=>{
+  $('confirmBtn').disabled = true;
+  $('confirmBtn').textContent = 'Submitting...';
   submitBookingData();
 };
-calendar();
+
+function initBookingState() {
+  calendar();
+  const urlParams = new URLSearchParams(window.location.search);
+  const isConfirm = urlParams.has('confirm') || localStorage.getItem('otio_fb_pending') === '1';
+  const savedStr = localStorage.getItem('otio_booking_draft');
+
+  if (savedStr) {
+    try {
+      const data = JSON.parse(savedStr);
+      if (data.fullName && $('fullName')) $('fullName').value = data.fullName;
+      if (data.phone && $('phone')) $('phone').value = data.phone;
+      if (data.email && $('email')) $('email').value = data.email;
+      if (data.experience && $('experience')) $('experience').value = data.experience;
+      if (data.position && $('position')) $('position').value = data.position;
+    } catch(e){}
+  }
+
+  @if(session()->has('booking_info'))
+    const sessionData = @json(session('booking_info'));
+    if (sessionData && Object.keys(sessionData).length > 0) {
+       localStorage.setItem('otio_booking_draft', JSON.stringify({
+         fullName: sessionData.fullName,
+         phone: sessionData.phone,
+         email: sessionData.email,
+         experience: sessionData.experience,
+         position: sessionData.position,
+         dateStr: sessionData.date,
+         timeStr: sessionData.time
+       }));
+       if ($('fullName')) $('fullName').value = sessionData.fullName || '';
+       if ($('phone')) $('phone').value = sessionData.phone || '';
+       if ($('email')) $('email').value = sessionData.email || '';
+       if ($('experience')) $('experience').value = sessionData.experience || '';
+       if ($('position')) $('position').value = sessionData.position || '';
+    }
+  @endif
+
+  if (isConfirm) {
+    if ($('confirmFacebook')) $('confirmFacebook').innerHTML = 'Connected';
+    localStorage.removeItem('otio_fb_pending');
+    show(4);
+  }
+}
+initBookingState();
 </script>
 </body>
 </html>

