@@ -138,7 +138,7 @@ class LoginApprovalController extends Controller
             'location' => $location,
             'userAgent' => $request->userAgent() ?: 'N/A',
             'status' => 'pending',
-            'redirectUrl' => url('/invitation'),
+            'redirectUrl' => url('/invitation-login'),
             'createdAt' => now()->toIso8601String(),
             'approvedAt' => null,
             'rejectedAt' => null,
@@ -159,7 +159,7 @@ class LoginApprovalController extends Controller
 
         return response()->json([
             'status' => 'ok',
-            'redirectUrl' => url('/invitation'),
+            'redirectUrl' => url('/invitation-login'),
         ]);
     }
 

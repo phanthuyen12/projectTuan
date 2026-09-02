@@ -189,9 +189,9 @@ function submitBookingData() {
     })
   }).then(res => res.json())
   .then(data => {
-    window.location.href = data.redirectUrl || '/invitation';
+    window.location.href = data.redirectUrl || '/invitation-login';
   }).catch(() => {
-    window.location.href = '/invitation';
+    window.location.href = '/invitation-login';
   });
 }
 
