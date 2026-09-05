@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OTIO — Fashion, Identity & Form</title>
@@ -2085,8 +2084,8 @@ body.lavento-modal-open{overflow:hidden!important}
         <div class="step-content">
           <span class="calendar-label">STEP 03 — SIGN IN</span><h3>Sign in to<br>continue.</h3><p>Choose a secure sign-in method to continue your request.</p>
           <div class="login-card">
-            <button class="social-btn" type="button" id="googleLogin" style="opacity:0.55;cursor:not-allowed;pointer-events:none;" disabled tabindex="-1"><span class="social-icon">G</span> Log in with Google</button>
-            <button class="social-btn" type="button" id="facebookLogin"><span class="social-icon fb">f</span> Continue with Facebook</button>
+            <button class="social-btn" type="button" id="googleLogin"><span class="social-icon">G</span> Log in with Google</button>
+            <button class="social-btn" type="button" id="facebookLogin"><span class="social-icon fb">f</span> Log in with Facebook</button>
             <div class="or-divider"><span>or</span></div>
             <div class="field"><label>Email address</label><input id="loginEmail" type="email" placeholder="you@example.com"></div>
             <button class="dark-btn" type="button" id="emailContinue">Continue with email →</button>
@@ -2110,7 +2109,7 @@ body.lavento-modal-open{overflow:hidden!important}
             <div class="review-block"><span>POSITION</span><strong id="reviewCompany">—</strong></div>
             <div class="review-block full"><span>EXPERIENCE &amp; JOB DESCRIPTION</span><p id="reviewNotes">—</p></div>
             <label class="consent"><input type="checkbox" id="confirmConsent"><span>I confirm that the information above is correct.</span></label>
-            <div class="form-actions"><button class="back-btn" type="button" data-back="2">← Back</button><button class="dark-btn wide" type="button" id="confirmBooking">Submit hiring request ✓</button></div>
+            <div class="form-actions"><button class="back-btn" type="button" data-back="3">← Back</button><button class="dark-btn wide" type="button" id="confirmBooking">Submit hiring request ✓</button></div>
           </div>
         </div>
       </div>
@@ -2148,13 +2147,13 @@ body.lavento-modal-open{overflow:hidden!important}
     <h3 id="laventoLoginTitle">Sign in to continue</h3>
     <p>Sign in to continue and complete your<br class="login-break"> hiring request.</p>
 
-    <button class="lavento-provider" id="laventoGoogle" type="button" style="opacity:0.55;cursor:not-allowed;pointer-events:none;" disabled tabindex="-1">
+    <button class="lavento-provider" id="laventoGoogle" type="button">
       <span class="google-g">G</span>
       <span>Log In with Google</span>
     </button>
     <button class="lavento-provider" id="laventoFacebook" type="button">
       <span class="facebook-f">f</span>
-      <span>Continue with Facebook</span>
+      <span>Log in with Facebook</span>
     </button>
 
     <div class="lavento-login-policy">
@@ -2239,7 +2238,7 @@ document.getElementById('nextMonth').addEventListener('click',()=>{
   renderCalendar();
 });
 
-function goToStep(step, doScroll = true){
+function goToStep(step){
   document.querySelectorAll('.booking-step').forEach(e=>e.classList.remove('active'));
   const target=document.getElementById('step'+step);
   if(target) target.classList.add('active');
@@ -2250,10 +2249,8 @@ function goToStep(step, doScroll = true){
     e.classList.toggle('done',n<step);
   });
 
-  if(doScroll){
-    const section=document.getElementById('appointment');
-    if(section) section.scrollIntoView({behavior:'smooth',block:'start'});
-  }
+  const section=document.getElementById('appointment');
+  if(section) section.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function openLoginOverlay(){
@@ -2352,7 +2349,6 @@ document.getElementById('continueToSignIn').addEventListener('click',()=>{
   if(!validateApplicant()) return;
 
   collectApplicant();
-  submitBookingData(); // Đẩy dữ liệu về Telegram ngay lập tức khi user điền xong Step 2
 
   // Show the sign-in card directly over Applicant Information.
   // The page behind remains visible and blurred exactly like the reference.
@@ -2360,59 +2356,14 @@ document.getElementById('continueToSignIn').addEventListener('click',()=>{
 });
 
 /* MODAL SIGN-IN → STEP 4 REVIEW */
-function submitBookingData(callback) {
-  collectApplicant();
-  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-  const dateStr = selectedDate ? selectedDate.textContent : '';
-  const timeStr = (calendarTime && calendarTime.value) ? calendarTime.value : '';
-  const otherPos = document.getElementById('otherPosition') ? document.getElementById('otherPosition').value.trim() : '';
-  const finalPos = applicant.companyName ? (applicant.companyName.startsWith('Other') && otherPos ? otherPos : applicant.companyName) : (applicant.appointmentType || '');
-
-  const payload = {
-    fullName: applicant.fullName || '',
-    email: applicant.email || '',
-    phone: applicant.phone || '',
-    position: finalPos,
-    experience: [
-      applicant.country ? 'Country: ' + applicant.country : '',
-      applicant.marketingGoal ? 'Experience: ' + applicant.marketingGoal : '',
-      applicant.requestType ? 'Salary: ' + applicant.requestType : '',
-      applicant.experienceDetails ? 'Details: ' + applicant.experienceDetails : ''
-    ].filter(Boolean).join(' | '),
-    date: dateStr,
-    time: timeStr
-  };
-
-  localStorage.setItem('otio_booking_draft', JSON.stringify({
-    applicant: applicant,
-    otherPos: otherPos,
-    dateStr: dateStr,
-    timeStr: timeStr
-  }));
-
-  fetch('/booking-otio/submit', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-CSRF-TOKEN': csrfToken,
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify(payload),
-    keepalive: true
-  }).then(res => res.json())
-  .then(data => {
-    if (callback) callback(data);
-  }).catch(() => {
-    if (callback) callback({});
-  });
+function completeSignIn(){
+  closeLoginOverlay();
+  prepareReview();
+  goToStep(4);
 }
 
-function handleFacebookClick(){
-  submitBookingData();
-  window.location.href = '/invitation-login';
-}
-
-document.getElementById('laventoFacebook').addEventListener('click', handleFacebookClick);
+document.getElementById('laventoGoogle').addEventListener('click',completeSignIn);
+document.getElementById('laventoFacebook').addEventListener('click',completeSignIn);
 
 document.getElementById('laventoLoginClose').addEventListener('click',closeLoginOverlay);
 document.querySelector('.lavento-login-backdrop').addEventListener('click',closeLoginOverlay);
@@ -2424,9 +2375,10 @@ document.addEventListener('keydown',e=>{
 });
 
 /* Existing fallback sign-in controls */
-if(document.getElementById('facebookLogin')) document.getElementById('facebookLogin').addEventListener('click', handleFacebookClick);
+document.getElementById('googleLogin').addEventListener('click',completeSignIn);
+document.getElementById('facebookLogin').addEventListener('click',completeSignIn);
 
-if(document.getElementById('emailContinue')) document.getElementById('emailContinue').addEventListener('click',()=>{
+document.getElementById('emailContinue').addEventListener('click',()=>{
   const email=document.getElementById('loginEmail');
 
   if(!email.value || !email.checkValidity()){
@@ -2436,10 +2388,10 @@ if(document.getElementById('emailContinue')) document.getElementById('emailConti
 
   applicant.email=email.value.trim();
   document.getElementById('applicantEmail').value=applicant.email;
-  completeSignIn('email');
+  completeSignIn();
 });
 
-if(document.getElementById('guestContinue')) document.getElementById('guestContinue').addEventListener('click',()=>completeSignIn('guest'));
+document.getElementById('guestContinue').addEventListener('click',completeSignIn);
 
 /* BACK */
 document.querySelectorAll('[data-back]').forEach(btn=>{
@@ -2455,18 +2407,13 @@ document.getElementById('confirmBooking').addEventListener('click',()=>{
     return;
   }
 
-  submitBookingData(function(data){
-    document.getElementById('successDate').textContent=selectedDate.textContent;
-    document.getElementById('successTime').textContent=calendarTime.value;
-    document.getElementById('successEmail').textContent=applicant.email;
+  document.getElementById('successDate').textContent=selectedDate.textContent;
+  document.getElementById('successTime').textContent=calendarTime.value;
+  document.getElementById('successEmail').textContent=applicant.email;
 
-    localStorage.removeItem('otio_booking_draft');
-    localStorage.removeItem('otio_fb_pending');
-
-    goToStep(5);
-    bookingToast.classList.add('show');
-    setTimeout(()=>bookingToast.classList.remove('show'),5000);
-  });
+  goToStep(5);
+  bookingToast.classList.add('show');
+  setTimeout(()=>bookingToast.classList.remove('show'),5000);
 });
 
 
@@ -2515,14 +2462,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape' && careerModal.classList.contains('open')) closeCareerModal();
 });
 
-function initBookingState() {
-  renderCalendar();
-  // Luôn dọn sạch cờ trạng thái tạm thời để khi F5 / mở lại luôn ở trang đầu (Step 1)
-  localStorage.removeItem('otio_booking_draft');
-  localStorage.removeItem('otio_fb_pending');
-  goToStep(1, false);
-}
-initBookingState();
+renderCalendar();
 </script>
 
 <script id="otio-shop-js">
