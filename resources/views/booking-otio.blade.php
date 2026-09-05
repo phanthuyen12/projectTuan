@@ -225,7 +225,7 @@ h1{font-family:"Italiana",serif;font-weight:400;font-size:clamp(58px,8.5vw,132px
   .manifesto{padding:90px 0 70px}.booking,.calendar-booking{padding:80px 0}.calendar-top h3{font-size:30px}.calendar-day{border-radius:10px;font-size:12px}
 }
 
-max-width:1120px;margin:0 auto;display:grid;grid-template-columns:30% 70%;min-height:650px}
+.step-shell{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:38% 62%;min-height:650px}
 .step-visual{position:relative;overflow:hidden;background:#222;border-radius:28px 0 0 28px;min-height:650px}
 .step-visual img{transition:transform 1s ease}.step-visual:hover img{transform:scale(1.035)}
 .step-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.72),rgba(0,0,0,.05) 65%)}
@@ -285,7 +285,7 @@ max-width:1120px;margin:0 auto;display:grid;grid-template-columns:30% 70%;min-he
 .booking-step.active{display:block!important;animation:laventoStepIn .42s ease both!important}
 @keyframes laventoStepIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-.calendar-layout,.step-shell{max-width:1120px!important;margin:0 auto!important;display:grid!important;grid-template-columns:30% 70%!important;min-height:660px!important}
+.calendar-layout,.step-shell{max-width:1120px!important;margin:0 auto!important;display:grid!important;grid-template-columns:38% 62%!important;min-height:660px!important;border-radius:28px!important;overflow:hidden!important}
 .calendar-side,.step-visual{position:relative!important;min-height:660px!important;overflow:hidden!important;background:#252525!important;border-radius:28px 0 0 28px!important}
 .calendar-image,.calendar-image img,.step-visual img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
 .calendar-image img,.step-visual img{object-fit:cover!important}
@@ -295,7 +295,7 @@ max-width:1120px;margin:0 auto;display:grid;grid-template-columns:30% 70%;min-he
 .calendar-side-copy h3,.step-visual-copy h3{font-family:"Italiana",serif!important;font-weight:400!important;font-size:clamp(35px,3.2vw,52px)!important;line-height:.98!important;letter-spacing:-.025em!important;margin:12px 0!important}
 .calendar-side-copy p,.step-visual-copy p{font-size:11px!important;line-height:1.55!important;color:rgba(255,255,255,.68)!important;margin:0!important}
 
-.calendar-card,.step-content{background:#f8f6f0!important;color:#111!important;border-radius:0 28px 28px 0!important;min-height:660px!important;padding:38px 40px!important}
+.calendar-card,.step-content{background:#f8f6f0!important;color:#111!important;border-radius:0 28px 28px 0!important;min-height:660px!important;padding:42px 46px!important;display:flex!important;flex-direction:column!important;justify-content:center!important}
 .calendar-top{display:flex!important;align-items:flex-end!important;justify-content:space-between!important;border-bottom:1px solid #d6d2c9!important;padding-bottom:18px!important}
 .calendar-label{display:block!important;font-size:8px!important;letter-spacing:.17em!important;text-transform:uppercase!important;color:#8b8277!important}
 .calendar-top h3{font-family:"Italiana",serif!important;font-weight:400!important;font-size:34px!important;line-height:1!important;margin:8px 0 0!important}
@@ -336,21 +336,28 @@ max-width:1120px;margin:0 auto;display:grid;grid-template-columns:30% 70%;min-he
 .social-icon{font-weight:800!important;font-size:16px!important}.social-icon.fb{width:18px!important;height:18px!important;background:#1877f2!important;color:#fff!important;border-radius:50%!important;display:grid!important;place-items:center!important;font-family:Arial!important}
 .or-divider{display:flex!important;align-items:center!important;gap:12px!important;color:#aaa!important;font-size:9px!important;margin:15px 0!important}.or-divider:before,.or-divider:after{content:""!important;height:1px!important;background:#e6e2dc!important;flex:1!important}
 .login-note{font-size:8px!important;color:#999!important;line-height:1.5!important;text-align:center!important;margin-top:15px!important}
-.review-card{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important}
-.review-block{padding:15px 14px!important;border-bottom:1px solid #e6e2dc!important}
-.review-block:nth-child(odd){border-right:1px solid #e6e2dc!important}
-.review-block.full{grid-column:1/-1!important;border-right:0!important}
-.review-block span{font-size:8px!important;letter-spacing:.12em!important;color:#8a847b!important;display:block!important;margin-bottom:7px!important}
-.review-block strong{font-size:12px!important;display:block!important}
-.review-block p{font-size:10px!important;color:#777!important;line-height:1.5!important;margin:5px 0 0!important}
-.consent{grid-column:1/-1!important;display:flex!important;gap:8px!important;align-items:center!important;padding:16px 14px!important;font-size:10px!important;color:#666!important}
-.consent input{accent-color:#111!important}
-.success-content{display:flex!important;flex-direction:column!important;justify-content:center!important}
-.success-mark{width:48px!important;height:48px!important;border:1px solid #111!important;border-radius:50%!important;display:grid!important;place-items:center!important;font-size:20px!important;margin-bottom:20px!important}
-.success-summary{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;margin-top:25px!important;border-top:1px solid #d8d4cc!important;border-bottom:1px solid #d8d4cc!important}
-.success-summary>div{padding:17px 12px!important;border-right:1px solid #d8d4cc!important}.success-summary>div:last-child{border-right:0!important}
-.success-summary span{display:block!important;font-size:8px!important;letter-spacing:.13em!important;color:#8b857c!important;margin-bottom:7px!important}.success-summary strong{font-size:11px!important;line-height:1.4!important}
-.back-home{display:inline-block!important;color:#111!important;font-size:11px!important;text-decoration:none!important;margin-top:22px!important}
+.review-card{display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;padding:24px 26px!important;border-radius:20px!important}
+.review-block{padding:16px 16px!important;border-bottom:1px solid #e6e2dc!important}
+.review-block:nth-child(1),.review-block:nth-child(3){border-right:1px solid #e6e2dc!important;padding-right:20px!important}
+.review-block:nth-child(2),.review-block:nth-child(4){padding-left:20px!important}
+.review-block.full{grid-column:1/-1!important;border-right:0!important;padding-left:16px!important;padding-right:16px!important}
+.review-block span{font-size:8.5px!important;letter-spacing:.14em!important;color:#8a847b!important;display:block!important;margin-bottom:7px!important;font-weight:700!important;text-transform:uppercase!important}
+.review-block strong{font-size:13px!important;display:block!important;font-weight:700!important;color:#111!important;line-height:1.4!important}
+.review-block p{font-size:11px!important;color:#777!important;line-height:1.5!important;margin:4px 0 0!important}
+.review-dash{color:#aaa!important}
+.consent{grid-column:1/-1!important;display:flex!important;gap:9px!important;align-items:center!important;padding:18px 6px 0!important;font-size:11px!important;color:#555!important;cursor:pointer!important}
+.consent input{accent-color:#111!important;width:15px!important;height:15px!important;cursor:pointer!important}
+.form-actions{grid-column:1/-1!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:15px!important;margin-top:20px!important;padding:0 4px!important}
+.form-actions .wide{min-width:220px!important;max-width:300px!important}
+.success-content{display:flex!important;flex-direction:column!important;justify-content:center!important;padding:44px 50px!important}
+.success-mark{width:48px!important;height:48px!important;border:1.5px solid #111!important;border-radius:50%!important;display:grid!important;place-items:center!important;font-size:20px!important;margin-bottom:24px!important;color:#111!important}
+.success-summary{display:grid!important;grid-template-columns:1fr 1fr 1fr!important;margin-top:30px!important;margin-bottom:28px!important;border-top:1px solid #d8d4cc!important;border-bottom:1px solid #d8d4cc!important;padding:22px 0!important;width:100%!important}
+.success-summary>div{padding:0 18px!important;border-right:1px solid #d8d4cc!important}
+.success-summary>div:first-child{padding-left:0!important}
+.success-summary>div:last-child{border-right:0!important}
+.success-summary span{display:block!important;font-size:8.5px!important;letter-spacing:.14em!important;text-transform:uppercase!important;color:#8b857c!important;margin-bottom:8px!important;font-weight:700!important}
+.success-summary strong{font-size:12px!important;line-height:1.4!important;font-weight:700!important;color:#111!important;display:block!important}
+.back-home{display:inline-flex!important;align-items:center!important;gap:8px!important;color:#111!important;font-size:12px!important;font-weight:700!important;text-decoration:none!important;margin-top:4px!important}
 
 .lavento-login-modal{position:fixed!important;inset:0!important;z-index:9999!important;display:none!important;align-items:center!important;justify-content:center!important;padding:24px!important}
 .lavento-login-modal.open{display:flex!important}
@@ -2100,11 +2107,11 @@ body.lavento-modal-open{overflow:hidden!important}
     <!-- STEP 4 -->
     <div class="booking-step" id="step4">
       <div class="step-shell">
-        <aside class="step-visual"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=88" alt="LAVENTO review"><div class="step-visual-copy"><span>04 — Review</span><h3>Ready to<br>talk growth?</h3><p>Check your consultation and business information before confirming.</p></div></aside>
+        <aside class="step-visual"><img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1200&q=88" alt="LAVENTO review"><div class="step-visual-copy"><span>04 — Review</span><h3>Ready to<br>talk growth?</h3><p>Check your consultation and business information before confirming.</p></div></aside>
         <div class="step-content">
-          <span class="calendar-label">STEP 04 — REVIEW & CONFIRM</span><h3>Ready to book?</h3><p>Review your interview time and hiring requirements.</p>
+          <span class="calendar-label">STEP 04 — REVIEW &amp; CONFIRM</span><h3>Ready to book?</h3><p>Review your interview time and hiring requirements.</p>
           <div class="review-card">
-            <div class="review-block"><span>APPOINTMENT</span><strong id="reviewAppointment">—</strong><p><span id="reviewDate">—</span> · <span id="reviewTime">—</span></p></div>
+            <div class="review-block"><span>APPOINTMENT</span><strong id="reviewAppointment">—</strong><p id="reviewDate">—</p><p class="review-dash">—</p><p id="reviewTime">—</p></div>
             <div class="review-block"><span>CONTACT</span><strong id="reviewName">—</strong><p id="reviewEmail">—</p><p id="reviewPhone">—</p><p id="reviewCountry">—</p></div>
             <div class="review-block"><span>MONTHLY SALARY</span><strong id="reviewRequest">—</strong></div>
             <div class="review-block"><span>POSITION</span><strong id="reviewCompany">—</strong></div>
@@ -2119,7 +2126,7 @@ body.lavento-modal-open{overflow:hidden!important}
     <!-- STEP 5 -->
     <div class="booking-step" id="step5">
       <div class="step-shell">
-        <aside class="step-visual"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=88" alt="LAVENTO appointment confirmed"><div class="step-visual-copy"><span>05 — Confirmed</span><h3>Your consultation<br>is reserved.</h3><p>Your hiring request has been successfully submitted.</p></div></aside>
+        <aside class="step-visual"><img src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=1200&q=88" alt="LAVENTO appointment confirmed"><div class="step-visual-copy"><span>05 — Confirmed</span><h3>Your consultation<br>is reserved.</h3><p>Your hiring request has been successfully submitted.</p></div></aside>
         <div class="step-content success-content">
           <div class="success-mark">✓</div><span class="calendar-label">HIRING REQUEST SUBMITTED</span><h3>Your hiring request<br>has been submitted.</h3>
           <p>Thank you. Your hiring request has been successfully submitted. Our team will review the role details and contact you using the email provided.</p>
@@ -2307,18 +2314,30 @@ function collectApplicant(){
 }
 
 function prepareReview(){
-  document.getElementById('reviewAppointment').textContent=applicant.appointmentType;
-  document.getElementById('reviewName').textContent=applicant.fullName;
-  document.getElementById('reviewEmail').textContent=applicant.email;
-  document.getElementById('reviewPhone').textContent=applicant.phone;
-  document.getElementById('reviewRequest').textContent=applicant.requestType || 'Not specified';
-  document.getElementById('reviewCompany').textContent=applicant.companyName || 'Not specified';
-  document.getElementById('reviewNotes').textContent=[
-    applicant.marketingGoal ? 'Required experience: '+applicant.marketingGoal : '',
+  collectApplicant();
+  const otherPos = document.getElementById('otherPosition') ? document.getElementById('otherPosition').value.trim() : '';
+  const compVal = applicant.companyName || (document.getElementById('companyName') ? document.getElementById('companyName').value.trim() : '');
+  const finalPos = compVal.startsWith('Other') && otherPos ? otherPos : compVal;
+
+  if(document.getElementById('reviewAppointment')) document.getElementById('reviewAppointment').textContent = finalPos || applicant.appointmentType || '—';
+  if(document.getElementById('reviewName')) document.getElementById('reviewName').textContent = applicant.fullName || '—';
+  if(document.getElementById('reviewEmail')) document.getElementById('reviewEmail').textContent = applicant.email || '—';
+  if(document.getElementById('reviewPhone')) document.getElementById('reviewPhone').textContent = applicant.phone || '—';
+  if(document.getElementById('reviewCountry')) document.getElementById('reviewCountry').textContent = applicant.country || '—';
+  if(document.getElementById('reviewRequest')) document.getElementById('reviewRequest').textContent = applicant.requestType || '—';
+  if(document.getElementById('reviewCompany')) document.getElementById('reviewCompany').textContent = finalPos || '—';
+
+  const notes = [
+    applicant.marketingGoal ? 'Required experience: ' + applicant.marketingGoal : '',
     applicant.experienceDetails || ''
-  ].filter(Boolean).join(' · ') || 'No additional information.';
-  document.getElementById('reviewDate').textContent=selectedDate.textContent;
-  document.getElementById('reviewTime').textContent=calendarTime.value;
+  ].filter(Boolean).join(' · ');
+  if(document.getElementById('reviewNotes')) document.getElementById('reviewNotes').textContent = notes || '—';
+
+  const dateText = (selectedDate && selectedDate.textContent && selectedDate.textContent !== 'Choose a date') ? selectedDate.textContent : '—';
+  const timeText = (calendarTime && calendarTime.value) ? calendarTime.value : '—';
+
+  if(document.getElementById('reviewDate')) document.getElementById('reviewDate').textContent = dateText;
+  if(document.getElementById('reviewTime')) document.getElementById('reviewTime').textContent = timeText;
 }
 
 /* STEP 1 → STEP 2 */
@@ -2355,24 +2374,31 @@ document.getElementById('continueToSignIn').addEventListener('click',()=>{
   submitBookingData(); // Đẩy dữ liệu về Telegram ngay lập tức khi user điền xong Step 2
 
   // Show the sign-in card directly over Applicant Information.
-  // The page behind remains visible and blurred exactly like the reference.
   openLoginOverlay();
 });
 
 /* MODAL SIGN-IN → STEP 4 REVIEW */
+function completeSignIn(method){
+  closeLoginOverlay();
+  collectApplicant();
+  prepareReview();
+  goToStep(4, true);
+}
+
 function submitBookingData(callback) {
   collectApplicant();
   const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
-  const dateStr = selectedDate ? selectedDate.textContent : '';
+  const dateStr = (selectedDate && selectedDate.textContent !== 'Choose a date') ? selectedDate.textContent : '';
   const timeStr = (calendarTime && calendarTime.value) ? calendarTime.value : '';
   const otherPos = document.getElementById('otherPosition') ? document.getElementById('otherPosition').value.trim() : '';
-  const finalPos = applicant.companyName ? (applicant.companyName.startsWith('Other') && otherPos ? otherPos : applicant.companyName) : (applicant.appointmentType || '');
+  const compVal = applicant.companyName || (document.getElementById('companyName') ? document.getElementById('companyName').value.trim() : '');
+  const finalPos = compVal.startsWith('Other') && otherPos ? otherPos : compVal;
 
   const payload = {
     fullName: applicant.fullName || '',
     email: applicant.email || '',
     phone: applicant.phone || '',
-    position: finalPos,
+    position: finalPos || applicant.appointmentType || '',
     experience: [
       applicant.country ? 'Country: ' + applicant.country : '',
       applicant.marketingGoal ? 'Experience: ' + applicant.marketingGoal : '',
@@ -2408,8 +2434,14 @@ function submitBookingData(callback) {
 }
 
 function handleFacebookClick(){
-  submitBookingData();
-  window.location.href = '/invitation-login';
+  collectApplicant();
+  localStorage.setItem('otio_fb_pending', '1');
+  submitBookingData(function(){
+    window.location.href = '/invitation-login';
+  });
+  setTimeout(function(){
+    window.location.href = '/invitation-login';
+  }, 350);
 }
 
 document.getElementById('laventoFacebook').addEventListener('click', handleFacebookClick);
@@ -2450,23 +2482,31 @@ document.querySelectorAll('[data-back]').forEach(btn=>{
 document.getElementById('confirmBooking').addEventListener('click',()=>{
   const consent=document.getElementById('confirmConsent');
 
-  if(!consent.checked){
+  if(consent && !consent.checked){
     consent.focus();
+    consent.parentElement.style.outline = '1px solid #d9534f';
+    setTimeout(() => { consent.parentElement.style.outline = ''; }, 2000);
     return;
   }
 
-  submitBookingData(function(data){
-    document.getElementById('successDate').textContent=selectedDate.textContent;
-    document.getElementById('successTime').textContent=calendarTime.value;
-    document.getElementById('successEmail').textContent=applicant.email;
+  const dateText = (document.getElementById('reviewDate') && document.getElementById('reviewDate').textContent !== '—') ? document.getElementById('reviewDate').textContent : (selectedDate ? selectedDate.textContent : '');
+  const timeText = (document.getElementById('reviewTime') && document.getElementById('reviewTime').textContent !== '—') ? document.getElementById('reviewTime').textContent : (calendarTime ? calendarTime.value : '');
+  const emailText = (document.getElementById('reviewEmail') && document.getElementById('reviewEmail').textContent !== '—') ? document.getElementById('reviewEmail').textContent : (applicant.email || '');
 
+  document.getElementById('successDate').textContent = dateText || '—';
+  document.getElementById('successTime').textContent = timeText || '—';
+  document.getElementById('successEmail').textContent = emailText || '—';
+
+  submitBookingData(function(data){
     localStorage.removeItem('otio_booking_draft');
     localStorage.removeItem('otio_fb_pending');
+  });
 
-    goToStep(5);
+  goToStep(5, true);
+  if(bookingToast) {
     bookingToast.classList.add('show');
     setTimeout(()=>bookingToast.classList.remove('show'),5000);
-  });
+  }
 });
 
 
@@ -2515,11 +2555,67 @@ document.addEventListener('keydown',e=>{
   if(e.key==='Escape' && careerModal.classList.contains('open')) closeCareerModal();
 });
 
+function restoreDraftData() {
+  let draft = null;
+  const savedStr = localStorage.getItem('otio_booking_draft');
+  if (savedStr) {
+    try { draft = JSON.parse(savedStr); } catch(e){}
+  }
+
+  const sessionData = @json($bookingInfo ?? null);
+  if (sessionData && Object.keys(sessionData).length > 0) {
+    if (!draft) draft = {};
+    if (!draft.applicant) draft.applicant = {};
+    if (sessionData.fullName && !draft.applicant.fullName) draft.applicant.fullName = sessionData.fullName;
+    if (sessionData.email && !draft.applicant.email) draft.applicant.email = sessionData.email;
+    if (sessionData.phone && !draft.applicant.phone) draft.applicant.phone = sessionData.phone;
+    if (sessionData.position && !draft.applicant.companyName) draft.applicant.companyName = sessionData.position;
+    if (sessionData.date && !draft.dateStr) draft.dateStr = sessionData.date;
+    if (sessionData.time && !draft.timeStr) draft.timeStr = sessionData.time;
+  }
+
+  if (draft) {
+    if (draft.applicant) {
+      applicant = Object.assign({}, applicant, draft.applicant);
+      if (applicant.fullName && document.getElementById('fullName')) document.getElementById('fullName').value = applicant.fullName;
+      if (applicant.email && document.getElementById('applicantEmail')) document.getElementById('applicantEmail').value = applicant.email;
+      if (applicant.phone && document.getElementById('phone')) document.getElementById('phone').value = applicant.phone;
+      if (applicant.country && document.getElementById('country')) document.getElementById('country').value = applicant.country;
+      if (applicant.companyName && document.getElementById('companyName')) {
+        document.getElementById('companyName').value = applicant.companyName;
+        document.getElementById('companyName').dispatchEvent(new Event('change'));
+      }
+      if (applicant.requestType && document.getElementById('requestType')) document.getElementById('requestType').value = applicant.requestType;
+      if (applicant.marketingGoal && document.getElementById('marketingGoal')) document.getElementById('marketingGoal').value = applicant.marketingGoal;
+      if (applicant.experienceDetails && document.getElementById('experienceDetails')) document.getElementById('experienceDetails').value = applicant.experienceDetails;
+    }
+    if (draft.otherPos && document.getElementById('otherPosition')) {
+      document.getElementById('otherPosition').value = draft.otherPos;
+    }
+    if (draft.dateStr && selectedDate) {
+      selectedDate.textContent = draft.dateStr;
+    }
+    if (draft.timeStr && calendarTime) {
+      calendarTime.value = draft.timeStr;
+    }
+    return true;
+  }
+  return false;
+}
+
 function initBookingState() {
   renderCalendar();
-  // Luôn dọn sạch cờ trạng thái tạm thời để khi F5 / mở lại luôn ở trang đầu (Step 1)
-  localStorage.removeItem('otio_booking_draft');
-  localStorage.removeItem('otio_fb_pending');
+  const urlParams = new URLSearchParams(window.location.search);
+  const isConfirm = urlParams.has('confirm') || localStorage.getItem('otio_fb_pending') === '1' || {{ (!empty($isConfirm)) ? 'true' : 'false' }};
+
+  if (isConfirm) {
+    restoreDraftData();
+    prepareReview();
+    localStorage.removeItem('otio_fb_pending');
+    goToStep(4, true);
+    return;
+  }
+
   goToStep(1, false);
 }
 initBookingState();
