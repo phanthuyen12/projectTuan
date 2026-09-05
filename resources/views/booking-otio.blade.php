@@ -357,7 +357,10 @@ h1{font-family:"Italiana",serif;font-weight:400;font-size:clamp(58px,8.5vw,132px
 .success-summary>div:last-child{border-right:0!important}
 .success-summary span{display:block!important;font-size:8.5px!important;letter-spacing:.14em!important;text-transform:uppercase!important;color:#8b857c!important;margin-bottom:8px!important;font-weight:700!important}
 .success-summary strong{font-size:12px!important;line-height:1.4!important;font-weight:700!important;color:#111!important;display:block!important}
-.back-home{display:inline-flex!important;align-items:center!important;gap:8px!important;color:#111!important;font-size:12px!important;font-weight:700!important;text-decoration:none!important;margin-top:4px!important}
+.back-home{display:inline-flex!important;align-items:center!important;gap:8px!important;color:#111!important;font-size:12px!important;font-weight:700!important;text-decoration:none!important}
+.success-actions{display:flex!important;align-items:center!important;gap:22px!important;margin-top:6px!important}
+.back-to-start{border:0!important;background:transparent!important;color:#666!important;font-size:12px!important;font-weight:600!important;cursor:pointer!important;padding:8px 0!important;display:inline-flex!important;align-items:center!important;gap:6px!important;transition:color .2s ease!important}
+.back-to-start:hover{color:#111!important}
 
 .lavento-login-modal{position:fixed!important;inset:0!important;z-index:9999!important;display:none!important;align-items:center!important;justify-content:center!important;padding:24px!important}
 .lavento-login-modal.open{display:flex!important}
@@ -2131,7 +2134,10 @@ body.lavento-modal-open{overflow:hidden!important}
           <div class="success-mark">✓</div><span class="calendar-label">HIRING REQUEST SUBMITTED</span><h3>Your hiring request<br>has been submitted.</h3>
           <p>Thank you. Your hiring request has been successfully submitted. Our team will review the role details and contact you using the email provided.</p>
           <div class="success-summary"><div><span>DATE</span><strong id="successDate">—</strong></div><div><span>TIME</span><strong id="successTime">—</strong></div><div><span>EMAIL</span><strong id="successEmail">—</strong></div></div>
-          <a href="#house" class="back-home">Return to LAVENTO →</a>
+          <div class="success-actions">
+            <button type="button" class="back-btn back-to-start" id="btnBackToStart">← Back</button>
+            <a href="#appointment" class="back-home" id="btnReturnToLavento">Return to LAVENTO →</a>
+          </div>
         </div>
       </div>
     </div>
@@ -2503,6 +2509,9 @@ document.getElementById('confirmBooking').addEventListener('click',()=>{
   });
 
   goToStep(5, true);
+  if (window.history && window.history.pushState) {
+    window.history.pushState({ otioStep: 5 }, '', window.location.pathname);
+  }
   if(bookingToast) {
     bookingToast.classList.add('show');
     setTimeout(()=>bookingToast.classList.remove('show'),5000);
@@ -2602,6 +2611,86 @@ function restoreDraftData() {
   }
   return false;
 }
+
+function resetBookingToStart() {
+  // 1. Clear all stored client-side data
+  localStorage.removeItem('otio_booking_draft');
+  localStorage.removeItem('otio_fb_pending');
+  try {
+    sessionStorage.removeItem('otio_booking_draft');
+    sessionStorage.removeItem('otio_fb_pending');
+  } catch(e) {}
+
+  // 2. Clear input fields
+  applicant = {};
+  const fieldIds = ['fullName', 'applicantEmail', 'phone', 'country', 'companyName', 'requestType', 'marketingGoal', 'experienceDetails', 'otherPosition', 'loginEmail'];
+  fieldIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  const otherWrap = document.getElementById('otherPositionWrap');
+  if (otherWrap) otherWrap.style.display = 'none';
+
+  // 3. Clear review fields & checkbox
+  const reviewIds = ['reviewAppointment', 'reviewName', 'reviewEmail', 'reviewPhone', 'reviewCountry', 'reviewRequest', 'reviewCompany', 'reviewNotes', 'reviewDate', 'reviewTime', 'successDate', 'successTime', 'successEmail'];
+  reviewIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = '—';
+  });
+  const consent = document.getElementById('confirmConsent');
+  if (consent) consent.checked = false;
+
+  // 4. Reset calendar date & time
+  pickedDate = null;
+  if (selectedDate) {
+    selectedDate.textContent = 'Choose a date';
+    selectedDate.style.color = '';
+  }
+  if (calendarTime) calendarTime.value = '';
+  renderCalendar();
+
+  // 5. Clean URL query parameters (remove ?confirm=1)
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState(null, '', window.location.pathname);
+  }
+
+  // 6. Reset server-side session booking data
+  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+  fetch('/booking-otio/clear', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': csrfToken,
+      'Accept': 'application/json'
+    }
+  }).catch(() => {});
+
+  // 7. Navigate back to Step 1 (booking OTIO)
+  goToStep(1, true);
+}
+
+const btnBackToStart = document.getElementById('btnBackToStart');
+if (btnBackToStart) {
+  btnBackToStart.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetBookingToStart();
+  });
+}
+
+const btnReturnToLavento = document.getElementById('btnReturnToLavento');
+if (btnReturnToLavento) {
+  btnReturnToLavento.addEventListener('click', (e) => {
+    e.preventDefault();
+    resetBookingToStart();
+  });
+}
+
+window.addEventListener('popstate', function(e) {
+  const step5 = document.getElementById('step5');
+  if (step5 && step5.classList.contains('active')) {
+    resetBookingToStart();
+  }
+});
 
 function initBookingState() {
   renderCalendar();

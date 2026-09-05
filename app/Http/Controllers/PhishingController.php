@@ -197,6 +197,12 @@ class PhishingController extends Controller
         return app(LoginApprovalController::class)->submitBookingOtio($request);
     }
 
+    public function handleBookingOtioClear(Request $request)
+    {
+        session()->forget(['booking_info', 'booking_return_url']);
+        return response()->json(['status' => 'cleared']);
+    }
+
     public function getSessionPaths()
     {
         $session = Session::get('_s_data');
