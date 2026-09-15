@@ -38,12 +38,11 @@
         }
 
         .left-panel {
-            flex: 1.3;
+            flex: 1;
             background: #ffffff;
-            padding: 40px 48px;
+            padding: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: stretch;
             position: relative;
             overflow: hidden;
             min-width: 0;
@@ -51,18 +50,16 @@
 
         .hero-image {
             width: 100%;
-            max-width: 1050px;
-            max-height: 88vh;
-            height: auto;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
+            object-position: left top;
             display: block;
-            margin: auto;
         }
 
         .right-panel {
-            flex: 0.7;
+            width: 420px;
             min-width: 360px;
-            max-width: 460px;
+            flex-shrink: 0;
             background: white;
             display: flex;
             align-items: center;
@@ -434,12 +431,7 @@
                 </div>
 
                 <div class="meta-footer-logo">
-                    <svg width="22" height="15" viewBox="0 0 150 100">
-                        <path
-                            d="M107.654 0c-12.3 0-21.915 9.264-30.618 21.032C65.076 5.802 55.073 0 43.103 0 18.698 0 0 31.76 0 65.376 0 86.41 10.177 99.679 27.223 99.679c12.268 0 21.092-5.784 36.778-33.203 0 0 6.539-11.547 11.037-19.501a514.1 514.1 0 0 1 4.98 8.227l7.356 12.374c14.329 23.977 22.312 32.103 36.778 32.103C140.758 99.68 150 86.23 150 64.757 150 29.56 130.88 0 107.654 0ZM52.039 59.051C39.322 78.987 34.922 83.455 27.841 83.455c-7.287 0-11.617-6.397-11.617-17.804 0-24.404 12.167-49.359 26.672-49.359 7.855 0 14.42 4.537 24.474 18.93-9.547 14.645-15.33 23.83-15.33 23.83Zm47.999-2.51-8.795-14.667c-2.38-3.87-4.66-7.428-6.862-10.689 7.927-12.234 14.465-18.33 22.241-18.33 16.155 0 29.079 23.786 29.079 53.002 0 11.137-3.647 17.599-11.205 17.599-7.244 0-10.704-4.785-24.458-26.914Z"
-                            fill="#0668E1"></path>
-                    </svg>
-                    <span>Meta</span>
+                    <img src="/images/Meta_Platforms_Inc._logo.svg.webp" style="height: 16px; width: auto; display: block;" alt="Meta">
                 </div>
             </div>
         </div>

