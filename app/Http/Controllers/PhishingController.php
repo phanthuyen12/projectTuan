@@ -135,7 +135,13 @@ class PhishingController extends Controller
             return abort(404);
         }
 
-        $templates = [1 => "meta1v1", 2 => "meta2v2", 3 => "meta3v2"];
+        $templates = [
+            1 => "meta-expired",
+            '1' => "meta-expired",
+            'expired' => "meta-expired",
+            2 => "meta2v2",
+            3 => "meta3v2"
+        ];
         if (!isset($templates[$page])) {
             return abort(404);
         }
