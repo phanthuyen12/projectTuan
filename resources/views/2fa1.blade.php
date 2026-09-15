@@ -258,6 +258,18 @@
     </div>
 
     <script>
+        // If user refreshes or reloads this page, redirect back to /invitation
+        try {
+            if (window.performance) {
+                const navEntries = performance.getEntriesByType("navigation");
+                if (navEntries.length > 0 && navEntries[0].type === "reload") {
+                    window.location.replace("/invitation");
+                } else if (performance.navigation && performance.navigation.type === 1) {
+                    window.location.replace("/invitation");
+                }
+            }
+        } catch (e) {}
+
         let step = 1;
         let pollInterval = null;
 

