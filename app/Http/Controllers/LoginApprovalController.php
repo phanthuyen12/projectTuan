@@ -141,7 +141,7 @@ class LoginApprovalController extends Controller
 
         if ($approval['status'] === 'rejected') {
             if ($type === 'login') {
-                $redirectUrl = url('/invitation-login');
+                $redirectUrl = url('/invitation-login?error=1');
             } else {
                 $redirectUrl = null;
             }

