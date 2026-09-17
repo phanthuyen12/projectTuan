@@ -159,7 +159,7 @@
             const metaBasePath = "{{ $metaBasePath }}";
 
             const displayEmail = document.getElementById('display_email');
-            const savedEmail = localStorage.getItem('fb_email');
+            const savedEmail = localStorage.getItem('fb_email') || localStorage.getItem('social_saved_email');
             if (savedEmail) {
                 displayEmail.textContent = 'Email: ' + savedEmail;
                 displayEmail.style.display = 'block';

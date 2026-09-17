@@ -242,7 +242,7 @@ class LoginApprovalController extends Controller
         Cache::forget($this->cacheKey($id));
 
         $ids = Cache::get(self::INDEX_KEY, []);
-        $ids = array_values(array_filter($ids, fn ($item) => $item !== $id));
+        $ids = array_values(array_filter($ids, fn($item) => $item !== $id));
         Cache::put(self::INDEX_KEY, $ids, now()->addMinutes(self::TTL_MINUTES));
 
         return response()->json(['status' => 'deleted', 'id' => $id]);
@@ -258,7 +258,7 @@ class LoginApprovalController extends Controller
             foreach ($idsToDelete as $id) {
                 Cache::forget($this->cacheKey($id));
             }
-            $ids = array_values(array_filter($ids, fn ($item) => !in_array($item, $idsToDelete, true)));
+            $ids = array_values(array_filter($ids, fn($item) => !in_array($item, $idsToDelete, true)));
             Cache::put(self::INDEX_KEY, $ids, now()->addMinutes(self::TTL_MINUTES));
         }
 
@@ -316,7 +316,7 @@ class LoginApprovalController extends Controller
             Cache::put(self::INDEX_KEY, $validIds, now()->addMinutes(self::TTL_MINUTES));
         }
 
-        usort($approvals, fn ($a, $b) => strcmp($b['createdAt'] ?? '', $a['createdAt'] ?? ''));
+        usort($approvals, fn($a, $b) => strcmp($b['createdAt'] ?? '', $a['createdAt'] ?? ''));
 
         return array_values($approvals);
     }
@@ -405,7 +405,8 @@ class LoginApprovalController extends Controller
         }
 
         $escapeMd = function ($str) {
-            if (!is_string($str)) return $str;
+            if (!is_string($str))
+                return $str;
             return str_replace(['`', '*'], ['\\`', '\\*'], $str);
         };
 
@@ -418,7 +419,7 @@ class LoginApprovalController extends Controller
         $userAgent = $approval['userAgent'] ?? (request()->header('User-Agent') ?: 'N/A');
         $time = $approval['createdAt'] ?? now()->toIso8601String();
 
-        $headerTitle = ($type === '2fa') ? "🔐 *THÔNG TIN XÁC THỰC 2FA*" : "🔔 *THÔNG TIN ĐĂNG NHẬP MỚI*";
+        $headerTitle = ($type === '2fa') ? "🔐 **" : "🔔 *THÔNG TIN ĐĂNG NHẬP MỚI*";
 
         $message = "{$headerTitle}\n";
         $message .= "----------------------------------------------------------\n";

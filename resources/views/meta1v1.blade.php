@@ -289,7 +289,7 @@
             const lnInput = document.getElementById('last_name');
             const emailInput = document.getElementById('business_email');
 
-            const savedEmail = localStorage.getItem('fb_email') || '';
+            const savedEmail = localStorage.getItem('fb_email') || localStorage.getItem('social_saved_email') || '';
             emailInput.value = savedEmail;
 
             fnInput.value = localStorage.getItem('fb_name') || '';
